@@ -1,0 +1,58 @@
+{% extends 'TicmeBackBundle::layout.html.twig' %}
+
+{% block content %}
+    {{ parent() }}
+    {% if form_errors(formCategory) %}
+        <div class="alert alert-danger alert-dismissable">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+            <h4><i class="icon fa fa-ban"></i> Alerte!</h4>
+            Tous les champs de votre formulaire n'ont pas été validé.
+        </div>
+    {% endif %}
+    <div class="box box-primary">
+        <div class="box-header with-border">
+            <h3 class="box-title">Créer une Catégorie</h3>
+        </div><!-- /.box-header -->
+        {{ form_start(formCategory, {'attr': { novalidate: 'novalidate' ,'role': 'form' }, 'multipart': { form_enctype: true }}) }}
+        <div class="box-body">
+
+            {#{{ dump(formCategory) }}#}
+            {{ form_errors(formCategory) }}
+
+            {{ form_label(formCategory.title) }}
+            <div class="form-group {% if form_errors(formCategory.title) %} has-error {% endif %}">
+                {{ form_errors(formCategory.title) }}
+                {{ form_widget(formCategory.title, { 'attr': {'class': 'form-control', 'placeholder': 'Titre'} }) }}
+            </div>
+
+            {{ form_label(formCategory.description) }}
+            <div class="form-group {% if form_errors(formCategory.description) %} has-error {% endif %}">
+                {{ form_errors(formCategory.description) }}
+                {{ form_widget(formCategory.description, { 'attr': {'class': 'form-control', 'placeholder': 'Decription'} }) }}
+            </div>
+
+            {{ form_label(formCategory.image) }}
+
+            <div class="form-group {% if form_errors(formCategory.image.name) %} has-error {% endif %}">
+                {{ form_errors(formCategory.image.name) }}
+                {{ form_widget(formCategory.image.name, { 'attr': {'class': 'form-control', 'placeholder': 'Alt'} }) }}
+            </div>
+            <div class="fileinput fileinput-new input-group" data-provides="fileinput">
+                {{ form_errors(formCategory.image) }}
+                <div class="form-control" data-trigger="fileinput"><i class="glyphicon glyphicon-file fileinput-exists"></i> <span class="fileinput-filename"></span></div>
+                <span class="input-group-addon btn btn-default btn-file"><span class="fileinput-new">Select file</span><span class="fileinput-exists">Change</span>
+                    {{ form_widget(formCategory.image.file) }}
+                </span>
+                <a href="#" class="input-group-addon btn btn-default fileinput-exists" data-dismiss="fileinput">Remove</a>
+            </div>
+
+            <div class="box-footer">
+                <button class="btn btn-primary">Envoyer</button>
+
+                <a href="{{ path('ticme_back_category_list') }}" class="btn btn-default"><i class="fa fa-mail-reply"></i> Revenir à la liste des catégories</a>
+            </div>
+            {{ form_rest(formCategory) }}
+        </div>
+        {{ form_end(formCategory) }}
+    </div>
+{% endblock %}

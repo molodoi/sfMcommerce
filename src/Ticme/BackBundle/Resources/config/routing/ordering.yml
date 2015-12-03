@@ -1,0 +1,36 @@
+ticme_back_order_active:
+    path: /reactive/{id}
+    defaults: { _controller: TicmeBackBundle:Ordering:active }
+    requirements:
+        id: \d+
+        active: \d+
+
+ticme_back_order_index:
+    path: /{page}
+    defaults: { _controller: TicmeBackBundle:Ordering:index, page: 1 }
+    requirements:
+      page: \d+
+
+ticme_back_order_list:
+    path: /list/{page}
+    defaults: { _controller: TicmeBackBundle:Ordering:list, page: 1 }
+
+ticme_back_order_edit:
+    path: /edit/{id}
+    defaults: { _controller: TicmeBackBundle:Ordering:edit }
+    requirements:
+        id: \d+
+
+ticme_back_order_show:
+    path: /show/{id}
+    defaults: { _controller: TicmeBackBundle:Ordering:show }
+    requirements:
+        id: \d+
+
+ticme_back_order_create:
+    path: /create
+    defaults: { _controller: TicmeBackBundle:Ordering:create }
+
+ticme_back_order_delete:
+    path: /delete/{id}
+    defaults: { _controller: TicmeBackBundle:Ordering:delete }

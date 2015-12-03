@@ -1,0 +1,89 @@
+{% extends '::base.html.twig' %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('/back/css/bootstrap.min.css') }}">
+    {#<link rel="stylesheet" href="{{ asset('/css/custom.min.css') }}">#}
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="{{ asset('/back/css/simple-sidebar.css') }}">
+    {#<link rel="stylesheet" href="{{ asset('/css/jasny-bootstrap.css') }}">#}
+{% endblock %}
+
+{% block body %}
+    <nav class="navbar navbar-default no-margin">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header fixed-brand">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"  id="menu-toggle">
+                <span class="glyphicon glyphicon-th-large" aria-hidden="true"></span>
+            </button>
+            <a class="navbar-brand" href="{{ path('ticme_back_homepage') }}"><i class="fa fa-rocket fa-4"></i> Mcommerce</a>
+        </div><!-- navbar-header-->
+
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav">
+                <li class="active" ><button class="navbar-toggle collapse in" data-toggle="collapse" id="menu-toggle-2"> <span class="fa fa-bars" aria-hidden="true"></span></button></li>
+            </ul>
+        </div><!-- bs-example-navbar-collapse-1 -->
+    </nav>
+<div id="wrapper">
+    <!-- Sidebar -->
+    <div id="sidebar-wrapper">
+        <ul class="sidebar-nav nav-pills nav-stacked" id="menu">
+
+            <li class="active">
+                <a href="#"><span class="fa-stack fa-lg pull-left"><i class="fa fa-list fa-stack-1x "></i></span> Catégories</a>
+                <ul class="nav-pills nav-stacked" style="list-style-type:none;">
+                    <li><a href="{{ path('ticme_back_category_list') }}">Toutes les catégories</a></li>
+                    <li><a href="{{ path('ticme_back_category_create') }}">Créer une catégorie</a></li>
+                </ul>
+            </li>
+            <li>
+                <a href="#"><span class="fa-stack fa-lg pull-left"><i class="fa fa-file fa-stack-1x "></i></span> Produits</a>
+                <ul class="nav-pills nav-stacked" style="list-style-type:none;">
+                    <li><a href="{{ path('ticme_back_product_list') }}">Toutes les produits</a></li>
+                    <li><a href="{{ path('ticme_back_product_create') }}">Créer une produit</a></li>
+                </ul>
+            </li>
+            <li class="dropdown">
+                <a href="#"><span class="fa-stack fa-lg pull-left"><i class="fa fa-cart-plus fa-stack-1x "></i></span>Commmandes</a>
+                <ul class="nav-pills nav-stacked" style="list-style-type:none;">
+                    <li><a href="{{ path('ticme_back_category_list') }}">Toutes les commandes</a></li>
+                    <li><a href="{{ path('ticme_back_category_create') }}">Créer une commande</a></li>
+                </ul>
+            </li>
+            <li>
+                <a href="#"><span class="fa-stack fa-lg pull-left"><i class="fa fa-cloud-download fa-stack-1x "></i></span>Overview</a>
+            </li>
+            <li>
+                <a href="#"> <span class="fa-stack fa-lg pull-left"><i class="fa fa-cart-plus fa-stack-1x "></i></span>Events</a>
+            </li>
+            <li>
+                <a href="#"><span class="fa-stack fa-lg pull-left"><i class="fa fa-youtube-play fa-stack-1x "></i></span>About</a>
+            </li>
+            <li>
+                <a href="#"><span class="fa-stack fa-lg pull-left"><i class="fa fa-wrench fa-stack-1x "></i></span>Services</a>
+            </li>
+            <li>
+                <a href="#"><span class="fa-stack fa-lg pull-left"><i class="fa fa-server fa-stack-1x "></i></span>Contact</a>
+            </li>
+        </ul>
+    </div><!-- /#sidebar-wrapper -->
+
+    <!-- Page Content -->
+    <div id="page-content-wrapper">
+        <div class="container-fluid">
+            {% block content %}
+
+            {% endblock %}
+        </div>
+    </div>
+    <!-- /#page-content-wrapper -->
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    {#<script src="{{ asset('/js/jasny-bootstrap.js') }}"></script>#}
+    <script src="{{ asset('/back/js/jquery.js') }}"></script>
+    <script src="{{ asset('/back/js/bootstrap.min.js') }}"></script>
+    <script src="{{ asset('/back/js/sidebar_menu.js') }}"></script>
+{% endblock %}

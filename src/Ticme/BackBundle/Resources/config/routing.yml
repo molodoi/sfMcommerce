@@ -1,0 +1,15 @@
+ticme_back_ordering:
+    resource: "@TicmeBackBundle/Resources/config/routing/ordering.yml"
+    prefix:   /order
+
+ticme_back_product:
+    resource: "@TicmeBackBundle/Resources/config/routing/product.yml"
+    prefix:   /product
+
+ticme_back_categorie:
+    resource: "@TicmeBackBundle/Resources/config/routing/category.yml"
+    prefix:   /category
+
+ticme_back_homepage:
+    path:     /
+    defaults: { _controller: TicmeBackBundle:Default:index }

@@ -1,0 +1,3 @@
+ticme_front_category_list:
+    path: /list/{page}
+    defaults: { _controller: TicmeBackBundle:Category:list, page: 1 }

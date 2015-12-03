@@ -1,0 +1,14 @@
+ticme_front:
+    resource: "@TicmeFrontBundle/Resources/config/routing.yml"
+    prefix:   /
+
+ticme_user:
+    resource: "@TicmeUserBundle/Resources/config/routing.yml"
+    prefix:   /
+
+ticme_back:
+    resource: "@TicmeBackBundle/Resources/config/routing.yml"
+    prefix:   /back
+
+fos_user:
+    resource: "@FOSUserBundle/Resources/config/routing/all.xml"

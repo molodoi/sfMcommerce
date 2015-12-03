@@ -1,0 +1,48 @@
+{% extends 'TicmeBackBundle::layout.html.twig' %}
+
+{% block content %}
+    {{ parent() }}
+    {% if form_errors(formOrdering) %}
+        <div class="alert alert-danger alert-dismissable">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+            <h4><i class="icon fa fa-ban"></i> Alerte!</h4>
+            Tous les champs de votre formulaire n'ont pas été validé.
+        </div>
+    {% endif %}
+    <div class="box box-primary">
+        <div class="box-header with-border">
+            <h3 class="box-title">Créer une Commande</h3>
+        </div><!-- /.box-header -->
+        {{ form_start(formOrdering, {'attr': { novalidate: 'novalidate' ,'role': 'form' }, 'multipart': { form_enctype: true }}) }}
+        <div class="box-body">
+            {#{{ dump(formProduct) }}#}
+            {{ form_errors(formOrdering) }}
+
+            {{ form_label(formOrdering.reference) }}
+            <div class="form-group {% if form_errors(formOrdering.reference) %} has-error {% endif %}">
+                {{ form_errors(formOrdering.reference) }}
+                {{ form_widget(formOrdering.reference, { 'attr': {'class': 'form-control', 'placeholder': 'Reference'} }) }}
+            </div>
+
+            {{ form_label(formOrdering.products) }}
+            <div class="form-group {% if form_errors(formOrdering.products) %} has-error {% endif %}">
+                {{ form_errors(formOrdering.products) }}
+                {{ form_widget(formOrdering.products, { 'attr': {'class': 'form-control', 'placeholder': 'Products'} }) }}
+            </div>
+
+            {{ form_label(formOrdering.validated) }}
+            <div class="form-group {% if form_errors(formOrdering.validated) %} has-error {% endif %}">
+                {{ form_errors(formOrdering.validated) }}
+                {{ form_widget(formOrdering.validated, { 'attr': {'class': 'form-control', 'placeholder': 'Valide'} }) }}
+            </div>
+
+            <div class="box-footer">
+                <button class="btn btn-primary">Envoyer</button>
+
+                <a href="{{ path('ticme_back_order_list') }}" class="btn btn-default"><i class="fa fa-mail-reply"></i> Revenir à la liste des commandes</a>
+            </div>
+            {{ form_rest(formOrdering) }}
+        </div>
+        {{ form_end(formOrdering) }}
+    </div>
+{% endblock %}

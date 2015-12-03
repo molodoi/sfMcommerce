@@ -1,0 +1,7 @@
+ticme_back_categorie:
+    resource: "@TicmeFrontBundle/Resources/config/routing/category.yml"
+    prefix:   /category
+
+ticme_front_homepage:
+    path:     /
+    defaults: { _controller: TicmeFrontBundle:Default:index }

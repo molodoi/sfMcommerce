@@ -1,0 +1,36 @@
+ticme_back_category_active:
+    path: /reactive/{id}
+    defaults: { _controller: TicmeBackBundle:Category:active }
+    requirements:
+        id: \d+
+        active: \d+
+
+ticme_back_category_index:
+    path: /{page}
+    defaults: { _controller: TicmeBackBundle:Category:index, page: 1 }
+    requirements:
+      page: \d+
+
+ticme_back_category_list:
+    path: /list/{page}
+    defaults: { _controller: TicmeBackBundle:Category:list, page: 1 }
+
+ticme_back_category_edit:
+    path: /edit/{id}
+    defaults: { _controller: TicmeBackBundle:Category:edit }
+    requirements:
+        id: \d+
+
+ticme_back_category_show:
+    path: /show/{id}
+    defaults: { _controller: TicmeBackBundle:Category:show }
+    requirements:
+        id: \d+
+
+ticme_back_category_create:
+    path: /create
+    defaults: { _controller: TicmeBackBundle:Category:create }
+
+ticme_back_category_delete:
+    path: /delete/{id}
+    defaults: { _controller: TicmeBackBundle:Category:delete }

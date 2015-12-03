@@ -1,0 +1,25 @@
+{% extends 'TicmeBackBundle::layout.html.twig' %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-lg-12">
+            <h1>{{ categorie.title }}</h1>
+        </div>
+        <div class="col-lg-6">
+            {% if categorie.image %}
+                <!--img src="{#{{ asset('uploads/categories/'~categorie.image.path) }}#}"  class="img-responsive"-->
+                <img src="{{ asset(categorie.image.getWebPath()) }}"  class="img-responsive">
+            {% endif %}
+        </div>
+        <div class="col-lg-6">
+            {{ categorie.description }}
+        </div>
+    </div>
+    <br />
+    <div class="row">
+        <div class="col-lg-12">
+            <a href="{{ path('ticme_back_category_list') }}" class="btn btn-default"><i class="fa fa-mail-reply"></i> Revenir à la liste des catégories</a>
+            <a href="{{ path('ticme_back_category_edit', {'id': categorie.id}) }}" class="btn btn-info"><i class="fa fa-edit"></i> Editer</a>
+        </div>
+    </div>
+{% endblock %}

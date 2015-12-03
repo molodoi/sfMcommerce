@@ -1,0 +1,38 @@
+ticme_back_product_create:
+    path: /create
+    defaults: { _controller: TicmeBackBundle:Product:create }
+
+ticme_back_product_active:
+    path: /reactive/{id}
+    defaults: { _controller: TicmeBackBundle:Product:active }
+    requirements:
+        id: \d+
+        active: \d+
+
+ticme_back_product_index:
+    path: /{page}
+    defaults: { _controller: TicmeBackBundle:Product:index, page: 1 }
+    requirements:
+      page: \d+
+
+ticme_back_product_list:
+    path: /list/{page}
+    defaults: { _controller: TicmeBackBundle:Product:list, page: 1 }
+
+ticme_back_product_edit:
+    path: /edit/{id}
+    defaults: { _controller: TicmeBackBundle:Product:edit }
+    requirements:
+        id: \d+
+
+ticme_back_product_show:
+    path: /show/{id}
+    defaults: { _controller: TicmeBackBundle:Product:show }
+    requirements:
+        id: \d+
+
+
+
+ticme_back_product_delete:
+    path: /delete/{id}
+    defaults: { _controller: TicmeBackBundle:Product:delete }

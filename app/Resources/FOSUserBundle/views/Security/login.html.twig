@@ -1,0 +1,46 @@
+{% extends "FOSUserBundle::layout.html.twig" %}
+
+{% trans_default_domain 'FOSUserBundle' %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('/css/signin.css') }}">
+
+{% endblock %}
+
+{% block fos_user_content %}
+    {% if error %}
+        <div class="dsmfùsdml">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+    {% endif %}
+    <div class="container">
+        <form action="{{ path("fos_user_security_check") }}" method="post" class="form-signin">
+            <input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />
+            <h2 class="form-signin-heading">Please sign in</h2>
+
+            <label for="username" class="sr-only">{{ 'security.login.username'|trans }}</label>
+            <input type="text" id="username" class="form-control" name="_username" value="{{ last_username }}" required autofocus />
+
+            <label for="password" class="sr-only">{{ 'security.login.password'|trans }}</label>
+            <input type="password" id="password" class="form-control" name="_password" required />
+
+            <div class="checkbox">
+                <label>
+                    <input type="checkbox" id="remember_me" name="_remember_me" value="on" /> {{ 'security.login.remember_me'|trans }}
+                </label>
+            </div>
+            <input type="submit" id="_submit" name="_submit" class="btn btn-lg btn-primary btn-block" value="{{ 'security.login.submit'|trans }}" />
+        </form>
+
+    </div> <!-- /container -->
+
+{% endblock fos_user_content %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
+    <!--[if lt IE 9]>
+    <script src="{{ asset('/js/ie8-responsive-file-warning.js') }}"></script>
+    <![endif]-->
+    <script src="{{ asset('/js/ie-emulation-modes-warning.js') }}"></script>
+    <script src="{{ asset('/js/ie10-viewport-bug-workaround.js') }}"></script>
+{% endblock %}
