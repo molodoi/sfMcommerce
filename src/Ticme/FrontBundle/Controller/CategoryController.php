@@ -11,21 +11,29 @@ class CategoryController extends Controller
 {
     public function categorieMenuAction()
     {
-        $repository = $this->getDoctrine()
-            ->getManager()
-            ->getRepository('TicmeBackBundle:Category');
-
-        $categories = $repository->findAll();
+        $em = $this->getDoctrine()->getManager();
+        $categories = $em->getRepository('TicmeBackBundle:Category')->findAll();
 
         if (null === $categories) {
             throw new NotFoundHttpException("Aucuns produits.");
         }
 
-        return $this->render('TicmeFrontBundle:Category/Slots:frontmenucategory.html.twig',array(
+        return $this->render('TicmeFrontBundle:Category:Partials/frontmenucategory.html.twig',array(
             'categories' => $categories
         ));
     }
 
+    public function showAction(Category $category, Request $request)
+    {
+        if (!$category) {
+            throw $this->createNotFoundException('Unable to find Category entity.');
+        }
 
+        return $this->render('TicmeFrontBundle::Category:show.html.twig',
+            array(
+                'category' => $category
+            )
+        );
+    }
 
 }

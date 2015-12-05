@@ -1,0 +1,5 @@
+<div class="list-group">
+    {% for categorie in categories %}
+            <a href="{{ path('ticme_front_categorie_show', {'id': categorie.id}) }}" class="list-group-item">{{ categorie.title }}</a>
+    {% endfor %}
+</div>

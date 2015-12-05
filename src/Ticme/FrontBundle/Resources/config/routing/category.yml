@@ -1,3 +1,7 @@
 ticme_front_category_list:
     path: /list/{page}
-    defaults: { _controller: TicmeBackBundle:Category:list, page: 1 }
+    defaults: { _controller: TicmeFrontBundle:Category:list, page: 1 }
+
+ticme_front_categorie_show:
+    path: /show/{id}
+    defaults: { _controller: TicmeFrontBundle:Category:show }
