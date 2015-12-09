@@ -20,7 +20,7 @@
                     <a href="{{ path(route, query|merge({(pageParameterName): page})) }}">{{ page }}</a>
                 </li>
             {% else %}
-                <li class="active"><a href="#">{{ page }}</a></li>
+                <li class="current active"><a href="#">{{ page }}</a></li>
             {% endif %}
 
         {% endfor %}

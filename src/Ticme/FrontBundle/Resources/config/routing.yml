@@ -1,6 +1,10 @@
-ticme_back_categorie:
+ticme_front_categorie:
     resource: "@TicmeFrontBundle/Resources/config/routing/category.yml"
     prefix:   /category
+
+ticme_front_product:
+    resource: "@TicmeFrontBundle/Resources/config/routing/product.yml"
+    prefix:   /product
 
 ticme_front_homepage:
     path:     /

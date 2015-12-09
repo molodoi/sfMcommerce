@@ -11,4 +11,15 @@ namespace Ticme\BackBundle\Repository;
 class CategoryRepository extends \Doctrine\ORM\EntityRepository
 {
 
+    public function findCategoryWithActiveAndWithProduct(){
+        $qb = $this->createQueryBuilder('c')->leftJoin('TicmeBackBundle:Product', 'p', 'WITH', 'c.id = p.category')->where('c.id = p.category')->select('c')->distinct(true);
+        return $qb->getQuery()->getResult();
+
+        //SELECT c. FROM um_categories as c, um_product as p WHERE p.category_id = c.id ORDERBY c.id;
+        /*SELECT DISTINCT c . *
+        FROM um_categories AS c, um_product AS p
+WHERE c.id = p.category_id
+ORDER BY c.id*/
+    }
+
 }

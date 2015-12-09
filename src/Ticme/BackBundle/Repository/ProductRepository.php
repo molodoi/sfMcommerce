@@ -10,4 +10,13 @@ namespace Ticme\BackBundle\Repository;
  */
 class ProductRepository extends \Doctrine\ORM\EntityRepository
 {
+    public function byCategory($category){
+        $qb = $this->createQueryBuilder('p')
+            ->select('p')
+            ->where('p.category = :category')
+            ->orderBy('p.id')
+            ->setParameter('category', $category);
+        return $qb->getQuery()->getResult();
+    }
+
 }
