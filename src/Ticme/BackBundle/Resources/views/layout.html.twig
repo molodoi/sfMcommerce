@@ -2,10 +2,10 @@
 
 {% block stylesheets %}
     {{ parent() }}
-    <link rel="stylesheet" href="{{ asset('/back/css/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('/css/back/bootstrap.min.css') }}">
     {#<link rel="stylesheet" href="{{ asset('/css/custom.min.css') }}">#}
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="{{ asset('/back/css/simple-sidebar.css') }}">
+    <link rel="stylesheet" href="{{ asset('/css/back/simple-sidebar.css') }}">
     {#<link rel="stylesheet" href="{{ asset('/css/jasny-bootstrap.css') }}">#}
 {% endblock %}
 
@@ -51,6 +51,18 @@
                     <li><a href="{{ path('ticme_back_category_create') }}">Créer une commande</a></li>
                 </ul>
             </li>
+
+            <li class="dropdown">
+                <a href="#"><span class="fa-stack fa-lg pull-left"><i class="fa fa-user fa-stack-1x "></i></span>Utilisateurs</a>
+                <ul class="nav-pills nav-stacked" style="list-style-type:none;">
+                    <li><a href="{{ path('ticme_back_user_list') }}">Toutes les utilisateurs</a></li>
+                    <li><a href="{{ path('ticme_back_user_create') }}">Créer un utilisateurs</a></li>
+                </ul>
+            </li>
+            <li class="dropdown">
+                <a href="{{ path('fos_user_security_logout') }}"><span class="fa-stack fa-lg pull-left"><i class="fa fa-toggle-off fa-stack-1x "></i></span>{{ 'layout.logout'|trans({}, 'FOSUserBundle') }}</a>
+                <a href="#"></a>
+            </li>
             <li>
                 <a href="#"><span class="fa-stack fa-lg pull-left"><i class="fa fa-cloud-download fa-stack-1x "></i></span>Overview</a>
             </li>
@@ -83,7 +95,7 @@
 {% block javascripts %}
     {{ parent() }}
     {#<script src="{{ asset('/js/jasny-bootstrap.js') }}"></script>#}
-    <script src="{{ asset('/back/js/jquery.js') }}"></script>
-    <script src="{{ asset('/back/js/bootstrap.min.js') }}"></script>
-    <script src="{{ asset('/back/js/sidebar_menu.js') }}"></script>
+    <script src="{{ asset('/js/back/jquery.js') }}"></script>
+    <script src="{{ asset('/js/back/bootstrap.min.js') }}"></script>
+    <script src="{{ asset('/js/back/sidebar_menu.js') }}"></script>
 {% endblock %}

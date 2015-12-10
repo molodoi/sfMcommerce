@@ -4,7 +4,7 @@ ticme_front:
 
 ticme_user:
     resource: "@TicmeUserBundle/Resources/config/routing.yml"
-    prefix:   /
+    prefix:   /user
 
 ticme_back:
     resource: "@TicmeBackBundle/Resources/config/routing.yml"

@@ -31,8 +31,6 @@ ticme_back_product_show:
     requirements:
         id: \d+
 
-
-
 ticme_back_product_delete:
     path: /delete/{id}
     defaults: { _controller: TicmeBackBundle:Product:delete }

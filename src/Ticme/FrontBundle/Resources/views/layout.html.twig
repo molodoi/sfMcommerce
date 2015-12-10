@@ -44,7 +44,11 @@
                                  Mon compte <b class="caret"></b>
                             {% endif %}
                         <ul class="dropdown-menu">
-
+                            {% if app.user and is_granted('ROLE_ADMIN') %}
+                                <li>
+                                    <a href="{{ path('ticme_back_homepage') }}">Accéder à l'admin</a>
+                                </li>
+                            {% endif %}
                             {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
                                 <li>
                                     <a href="{{ path('fos_user_profile_edit') }}">Editer votre profil</a>

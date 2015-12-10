@@ -32,3 +32,4 @@ security:
         - { path: ^/register, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/resetting, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/back, role: ROLE_ADMIN }
+        - { path: ^/user, role: ROLE_ADMIN }
