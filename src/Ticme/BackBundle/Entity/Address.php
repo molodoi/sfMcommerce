@@ -96,7 +96,7 @@ class Address
     protected $updatedAt;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Ticme\UserBundle\Entity\User", inversedBy="products")
+     * @ORM\ManyToOne(targetEntity="Ticme\UserBundle\Entity\User", inversedBy="address")
      * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
      */
     private $user;

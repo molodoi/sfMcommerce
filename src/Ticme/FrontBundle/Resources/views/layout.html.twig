@@ -19,7 +19,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="#">Start Bootstrap</a>
+                <a class="navbar-brand" href="{{ path('ticme_front_homepage') }}">Start Bootstrap</a>
             </div>
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -37,14 +37,30 @@
 
                 <ul class="nav navbar-nav navbar-right">
                     <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Mon compte <b class="caret"></b></a>
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+                                {{ 'layout.logged_in_as'|trans({'%username%': app.user.username}, 'FOSUserBundle') }} <b class="caret"></b>
+                            {% else %}
+                                 Mon compte <b class="caret"></b>
+                            {% endif %}
                         <ul class="dropdown-menu">
-                            <li>
-                                <a href="{{ path('fos_user_registration_register') }}">Créer un compte</a>
-                            </li>
-                            <li>
-                                <a href="{{ path('fos_user_security_login') }}">Identifiez-vous</a>
-                            </li>
+
+                            {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+                                <li>
+                                    <a href="{{ path('fos_user_profile_edit') }}">Editer votre profil</a>
+                                </li>
+                                <li>
+                                    <a href="{{ path('fos_user_security_logout') }}">{{ 'layout.logout'|trans({}, 'FOSUserBundle') }}</a>
+                                </li>
+                            {% else %}
+                                <li>
+                                    <a href="{{ path('fos_user_registration_register') }}">Créer un compte</a>
+                                </li>
+                                <li>
+                                    <a href="{{ path('fos_user_security_login') }}">Identifiez-vous</a>
+                                </li>
+                            {% endif %}
+
                         </ul>
                     </li>
                 </ul>
@@ -56,26 +72,11 @@
 
     <!-- Page Content -->
     <div class="container">
-
         <div class="row">
-
-            <div class="col-md-3">
-                {{ render(controller('TicmeFrontBundle:Category:categorieMenu')) }}
-
-            </div>
-
-            <div class="col-md-9">
-
                 {% block content %}
 
                 {% endblock %}
-
-
-
-            </div>
-
         </div>
-
     </div>
     <!-- /.container -->
 

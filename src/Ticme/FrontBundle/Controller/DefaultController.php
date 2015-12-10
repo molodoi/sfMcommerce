@@ -7,7 +7,7 @@ use Symfony\Component\HttpFoundation\Request;
 
 class DefaultController extends Controller
 {
-    public function indexAction(Request $request)
+    public function indexAction(Request $request, $page)
     {
         $em = $this->getDoctrine()->getManager();
         $allProducts = $em->getRepository('TicmeBackBundle:Product')->findAll();

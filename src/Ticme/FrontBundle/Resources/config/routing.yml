@@ -6,6 +6,12 @@ ticme_front_product:
     resource: "@TicmeFrontBundle/Resources/config/routing/product.yml"
     prefix:   /product
 
+ticme_front_home_page:
+    path:     /{page}
+    defaults: { _controller: TicmeFrontBundle:Default:index, page: 1 }
+    requirements:
+      page: \d+
+
 ticme_front_homepage:
     path:     /
     defaults: { _controller: TicmeFrontBundle:Default:index }

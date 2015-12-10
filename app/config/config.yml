@@ -98,6 +98,7 @@ stof_doctrine_extensions:
             sluggable: true
 
 fos_user:
+    use_username_form_type: false
     db_driver: orm # other valid values are 'mongodb', 'couchdb' and 'propel'
     firewall_name: main
     user_class: Ticme\UserBundle\Entity\User

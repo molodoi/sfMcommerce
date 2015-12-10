@@ -1,3 +1,10 @@
 ticme_front_products_by_category:
     path: /category/{id}/{page}
     defaults: { _controller: TicmeFrontBundle:Product:showProductByCategoryId, page: 1 }
+
+ticme_front_product_show:
+    path: /show/{slug}-{id}
+    defaults: { _controller: TicmeFrontBundle:Product:show }
+    requirements:
+      slug: "[a-zA-Z1-9\-_\/]+"
+      id: "\d+"

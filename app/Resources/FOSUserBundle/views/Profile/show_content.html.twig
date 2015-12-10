@@ -1,6 +1,43 @@
 {% trans_default_domain 'FOSUserBundle' %}
 
-<div class="fos_user_user_show">
-    <p>{{ 'profile.show.username'|trans }}: {{ user.username }}</p>
-    <p>{{ 'profile.show.email'|trans }}: {{ user.email }}</p>
+<div class="container">
+    <h1>Votre Profil</h1>
+    <hr />
+    <!-- left column -->
+    <div class="col-md-3">
+        <div class="text-center">
+            <img src="//placehold.it/100" class="avatar img-circle" alt="avatar">
+        </div>
+    </div>
+    <!-- edit form column -->
+    <div class="col-md-9 personal-info">
+
+        <h3>Infos Personnel</h3>
+        <form class="form-horizontal">
+            <div class="form-group">
+                <label class="col-lg-3 control-label">Login</label>
+                <div class="col-lg-8">
+                    <input class="form-control" id="login" type="text" placeholder="{{ 'profile.show.username'|trans }}: {{ user.username }}" disabled>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-lg-3 control-label">Email</label>
+                <div class="col-lg-8">
+                    <input class="form-control" id="login" type="text" placeholder="{{ 'profile.show.email'|trans }}: {{ user.email }}" disabled>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-3">
+                    <a class="btn btn-lg btn-default btn-block" href="{{ path('ticme_front_homepage') }}" role="button">
+                        Retour à l'Accueil
+                    </a>
+                </div>
+                <div class="col-md-8">
+                    <a class="btn btn-lg btn-success btn-block" href="{{ path('fos_user_profile_edit') }}" role="button">Editer votre profil</a>
+                </div>
+            </div>
+        </form>
+    </div>
+
 </div>

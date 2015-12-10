@@ -10,15 +10,15 @@
 
 {% block fos_user_content %}
     {% if error %}
-        <div class="">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+        <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
     {% endif %}
     <div class="container">
         <div class="row">
             <div class="col-lg-6">
-                <h4>Pas encore inscrit ?</h4>
+                <h4>Vous avez perdu votre mot de passe ?</h4>
                 <em>
-                    nous vous invitons à vous inscrire<br />
-                    afin de passer votre commande et de manger équilibré.
+                    Compléter le formulaire, un email vous sera envoyé.<br />
+                    Il contiendra la procédure à suivre pour renouveler votre mot de passe.
                 </em>
                 <br /><br />
                 <a href="{{ path('fos_user_registration_register') }}" class="btn btn-primary">S'inscrire</a>
@@ -26,22 +26,24 @@
             </div>
             <div class="col-lg-6">
                 <form action="{{ path("fos_user_security_check") }}" method="post" class="form-signin">
-                    <input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />
-                    <h2 class="form-signin-heading">Identifiez-vous</h2>
+                        <input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />
+                        <h2 class="form-signin-heading">Identifiez-vous</h2>
 
-                    <label for="username" class="sr-only">{{ 'security.login.username'|trans }}</label>
-                    <input type="text" id="username" class="form-control" name="_username" value="{{ last_username }}" required autofocus />
-                    <br />
-                    <label for="password" class="sr-only">{{ 'security.login.password'|trans }}</label>
-                    <input type="password" id="password" class="form-control" name="_password" required />
+                        <label for="username" class="sr-only">{{ 'security.login.username'|trans }}</label>
+                        <input type="text" id="username" class="form-control" name="_username" value="{{ last_username }}" required autofocus />
+                        <br />
+                        <label for="password" class="sr-only">{{ 'security.login.password'|trans }}</label>
+                        <input type="password" id="password" class="form-control" name="_password" required />
 
-                    <div class="checkbox">
-                        <label>
-                            <input type="checkbox" id="remember_me" name="_remember_me" value="on" /> {{ 'security.login.remember_me'|trans }}
-                        </label>
-                    </div>
-                    <input type="submit" id="_submit" name="_submit" class="btn btn-lg btn-primary btn-block" value="{{ 'security.login.submit'|trans }}" />
+                        <div class="checkbox">
+                            <label>
+                                <input type="checkbox" id="remember_me" name="_remember_me" value="on" /> {{ 'security.login.remember_me'|trans }}
+                            </label>
+                        </div>
+                        <input type="submit" id="_submit" name="_submit" class="btn btn-lg btn-primary btn-block" value="{{ 'security.login.submit'|trans }}" />
                 </form>
+                <br />
+                    <a href="{{ path('fos_user_resetting_request') }}">Mot de passe oublié?</a>
             </div>
         </div>
 

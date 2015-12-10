@@ -1,11 +1,8 @@
-{% extends '::base.html.twig' %}
+{% extends 'TicmeFrontBundle::layout.html.twig' %}
 
-{% block stylesheets %}
-    <link rel="stylesheet" href="{{ asset('/css/front/bootstrap.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('/css/front/shop-homepage.css') }}">
-{% endblock %}
 
-{% block body %}
+
+{% block content %}
     {#<div>
         {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
             {{ 'layout.logged_in_as'|trans({'%username%': app.user.username}, 'FOSUserBundle') }} |
@@ -32,7 +29,3 @@
     {% endblock fos_user_content %}
 {% endblock %}
 
-{% block javascripts %}
-    <script src="{{ asset('/js/front/jquery.js') }}"></script>
-    <script src="{{ asset('/js/front/bootstrap.min.js') }}"></script>
-{% endblock %}

@@ -31,6 +31,7 @@ class User extends BaseUser
     protected $address;
 
 
+
     public function __construct()
     {
         parent::__construct();

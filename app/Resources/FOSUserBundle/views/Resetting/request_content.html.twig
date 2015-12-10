@@ -1,14 +1,29 @@
 {% trans_default_domain 'FOSUserBundle' %}
 
-<form action="{{ path('fos_user_resetting_send_email') }}" method="POST" class="fos_user_resetting_request">
-    <div>
-        {% if invalid_username is defined %}
-            <p>{{ 'resetting.request.invalid_username'|trans({'%username%': invalid_username}) }}</p>
-        {% endif %}
-        <label for="username">{{ 'resetting.request.username'|trans }}</label>
-        <input type="text" id="username" name="username" required="required" />
+<div class="container">
+    <div class="row">
+        <div class="col-lg-6">
+            <h4>Pas encore inscrit ?</h4>
+            <em>
+                nous vous invitons à vous inscrire<br />
+                afin de passer votre commande et de manger équilibré.
+            </em>
+            <br /><br />
+            <a href="{{ path('fos_user_registration_register') }}" class="btn btn-primary">S'inscrire</a>
+
+        </div>
+        <div class="col-lg-6">
+            <form action="{{ path('fos_user_resetting_send_email') }}" method="POST" class="fos_user_resetting_request">
+
+                    <label for="username">{{ 'resetting.request.username'|trans }}</label>
+                    <div class="form-group {% if invalid_username is defined %} has-error {% endif %}">
+                        <input type="text" id="username" name="username" required="required" class="form-control"/>
+                        {% if invalid_username is defined %}
+                            <p>{{ 'resetting.request.invalid_username'|trans({'%username%': invalid_username}) }}</p>
+                        {% endif %}
+                    </div>
+                    <input type="submit" value="{{ 'resetting.request.submit'|trans }}" class="btn btn-lg btn-primary btn-block" />
+            </form>
+        </div>
     </div>
-    <div>
-        <input type="submit" value="{{ 'resetting.request.submit'|trans }}" />
-    </div>
-</form>
+</div>
