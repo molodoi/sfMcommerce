@@ -1,40 +1,45 @@
-ticme_back_user_create:
-    path: /create
-    defaults: { _controller: TicmeUserBundle:User:create }
+ticme_user_user:
+    resource: "@TicmeUserBundle/Resources/config/routing/user.yml"
+    prefix:   /user
 
-ticme_back_user_active:
-    path: /reactive/{id}
-    defaults: { _controller: TicmeUserBundle:User:active }
-    requirements:
-        id: \d+
-        active: \d+
 
-ticme_back_user_index:
-    path: /{page}
-    defaults: { _controller: TicmeUserBundle:User:index, page: 1 }
-    requirements:
-      page: \d+
-
-ticme_back_user_list:
-    path: /list/{page}
-    defaults: { _controller: TicmeUserBundle:User:list, page: 1 }
-
-ticme_back_user_edit:
-    path: /edit/{id}
-    defaults: { _controller: TicmeUserBundle:User:edit }
-    requirements:
-        id: \d+
-
-ticme_back_user_show:
-    path: /show/{id}
-    defaults: { _controller: TicmeUserBundle:User:show }
-    requirements:
-        id: \d+
-
-ticme_back_user_delete:
-    path: /delete/{id}
-    defaults: { _controller: TicmeUserBundle:User:delete }
-
-ticme_back_user_homepage:
-    path:     /
-    defaults: { _controller: TicmeUserBundle:Default:index }
+#ticme_back_user_create:
+#    path: /create
+#    defaults: { _controller: TicmeUserBundle:User:create }
+#
+#ticme_back_user_active:
+#    path: /reactive/{id}
+#    defaults: { _controller: TicmeUserBundle:User:active }
+#    requirements:
+#        id: \d+
+#        active: \d+
+#
+#ticme_back_user_index:
+#    path: /{page}
+#    defaults: { _controller: TicmeUserBundle:User:index, page: 1 }
+#    requirements:
+#      page: \d+
+#
+#ticme_back_user_list:
+#    path: /list/{page}
+#    defaults: { _controller: TicmeUserBundle:User:list, page: 1 }
+#
+#ticme_back_user_edit:
+#    path: /edit/{id}
+#    defaults: { _controller: TicmeUserBundle:User:edit }
+#    requirements:
+#        id: \d+
+#
+#ticme_back_user_show:
+#    path: /show/{id}
+#    defaults: { _controller: TicmeUserBundle:User:show }
+#    requirements:
+#        id: \d+
+#
+#ticme_back_user_delete:
+#    path: /delete/{id}
+#    defaults: { _controller: TicmeUserBundle:User:delete }
+#
+#ticme_back_user_homepage:
+#    path:     /
+#    defaults: { _controller: TicmeUserBundle:Default:index }

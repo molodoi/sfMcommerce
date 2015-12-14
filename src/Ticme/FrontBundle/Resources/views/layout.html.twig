@@ -44,7 +44,7 @@
                                  Mon compte <b class="caret"></b>
                             {% endif %}
                         <ul class="dropdown-menu">
-                            {% if app.user and is_granted('ROLE_ADMIN') %}
+                            {% if is_granted('ROLE_ADMIN') %}
                                 <li>
                                     <a href="{{ path('ticme_back_homepage') }}">Accéder à l'admin</a>
                                 </li>

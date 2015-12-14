@@ -2,76 +2,225 @@
 
 namespace Ticme\UserBundle\Controller;
 
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
-use Ticme\UserBundle\Entity\User;
-use Ticme\UserBundle\Form\Type\UserType;
+use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
+use Ticme\UserBundle\Entity\User;
+use Ticme\UserBundle\Form\UserType;
+
+/**
+ * User controller.
+ *
+ */
 class UserController extends Controller
 {
-    public function listAction(Request $request, $page)
+
+    /**
+     * Lists all User entities.
+     *
+     */
+    public function indexAction()
     {
-        $repository = $this->getDoctrine()
-            ->getManager()
-            ->getRepository('TicmeUserBundle:User');
+        $em = $this->getDoctrine()->getManager();
 
-        $allUsers = $repository->findAll();
+        $entities = $em->getRepository('TicmeUserBundle:User')->findAll();
 
-        if (null === $allUsers) {
-            throw new NotFoundHttpException("Aucuns users.");
+        return $this->render('TicmeUserBundle:User:index.html.twig', array(
+            'entities' => $entities,
+        ));
+    }
+    /**
+     * Creates a new User entity.
+     *
+     */
+    public function createAction(Request $request)
+    {
+        $entity = new User();
+        $form = $this->createCreateForm($entity);
+        $form->handleRequest($request);
+
+        if ($form->isValid()) {
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($entity);
+            $em->flush();
+
+            return $this->redirect($this->generateUrl('user_show', array('id' => $entity->getId())));
         }
 
-        if(empty($page)){
-            $page = $request->query->getInt('page', 1);
-        }
-
-        $paginator = $this->get('knp_paginator');
-        $users = $paginator->paginate(
-            $allUsers,
-            $page,
-            12
-        );
-
-        return $this->render('TicmeUserBundle:User:list.html.twig',array(
-            'users' => $users
+        return $this->render('TicmeUserBundle:User:new.html.twig', array(
+            'entity' => $entity,
+            'form'   => $form->createView(),
         ));
     }
 
-    public function editAction(User $user, Request $request)
+    /**
+     * Creates a form to create a User entity.
+     *
+     * @param User $entity The entity
+     *
+     * @return \Symfony\Component\Form\Form The form
+     */
+    private function createCreateForm(User $entity)
     {
-        if (!$user) {
-            throw new NotFoundHttpException("Le user id n'existe pas.");
+        $form = $this->createForm(new UserType(), $entity, array(
+            'action' => $this->generateUrl('user_create'),
+            'method' => 'POST',
+        ));
+
+        $form->add('submit', 'submit', array('label' => 'Create'));
+
+        return $form;
+    }
+
+    /**
+     * Displays a form to create a new User entity.
+     *
+     */
+    public function newAction()
+    {
+        $entity = new User();
+        $form   = $this->createCreateForm($entity);
+
+        return $this->render('TicmeUserBundle:User:new.html.twig', array(
+            'entity' => $entity,
+            'form'   => $form->createView(),
+        ));
+    }
+
+    /**
+     * Finds and displays a User entity.
+     *
+     */
+    public function showAction($id)
+    {
+        $em = $this->getDoctrine()->getManager();
+
+        $entity = $em->getRepository('TicmeUserBundle:User')->find($id);
+
+        if (!$entity) {
+            throw $this->createNotFoundException('Unable to find User entity.');
         }
 
-        $formUser = $this->createForm(new UserType(), $user);
+        $deleteForm = $this->createDeleteForm($id);
 
-        $formUser->handleRequest($request);
+        return $this->render('TicmeUserBundle:User:show.html.twig', array(
+            'entity'      => $entity,
+            'delete_form' => $deleteForm->createView(),
+        ));
+    }
 
-        $formUser->get('password')->getData();
+    /**
+     * Displays a form to edit an existing User entity.
+     *
+     */
+    public function editAction($id)
+    {
+        $em = $this->getDoctrine()->getManager();
 
-        if($formUser->isValid()){
+        $entity = $em->getRepository('TicmeUserBundle:User')->find($id);
 
+        if (!$entity) {
+            throw $this->createNotFoundException('Unable to find User entity.');
+        }
+
+        $editForm = $this->createEditForm($entity);
+
+        return $this->render('TicmeUserBundle:User:edit.html.twig', array(
+            'entity'      => $entity,
+            'edit_form'   => $editForm->createView(),
+        ));
+    }
+
+    /**
+    * Creates a form to edit a User entity.
+    *
+    * @param User $entity The entity
+    *
+    * @return \Symfony\Component\Form\Form The form
+    */
+    private function createEditForm(User $entity)
+    {
+        $form = $this->createForm(new UserType(), $entity, array(
+            'action' => $this->generateUrl('user_update', array('id' => $entity->getId())),
+            'method' => 'PUT',
+        ));
+
+        $form->add('submit', 'submit', array('label' => 'Update'));
+
+        return $form;
+    }
+    /**
+     * Edits an existing User entity.
+     *
+     */
+    public function updateAction(Request $request, $id)
+    {
+        $em = $this->getDoctrine()->getManager();
+
+        $entity = $em->getRepository('TicmeUserBundle:User')->find($id);
+        $oldPassword    = $entity->getPassword();
+
+        if (!$entity) {
+            throw $this->createNotFoundException('Unable to find User entity.');
+        }
+
+
+        $editForm = $this->createEditForm($entity);
+        $editForm->handleRequest($request);
+
+        if ($editForm->isValid()) {
+            $userManager = $this->get('fos_user.user_manager');
+            if($editForm->get('password')->getData() !== '' && $editForm->get('password')->getData() !== NULL) {
+                $entity->setPlainPassword($editForm->get('password')->getData());
+            } else {
+                $entity->setPassword($oldPassword);
+            }
+
+            $userManager->updateUser($entity);
+            return $this->redirect($this->generateUrl('user_edit', array('id' => $id)));
+        }
+
+        return $this->render('TicmeUserBundle:User:edit.html.twig', array(
+            'entity'      => $entity,
+            'edit_form'   => $editForm->createView(),
+        ));
+    }
+    /**
+     * Deletes a User entity.
+     *
+     */
+    public function deleteAction(Request $request, $id)
+    {
+        $form = $this->createDeleteForm($id);
+        $form->handleRequest($request);
+        if ($form->isValid()) {
             $em = $this->getDoctrine()->getManager();
+            $entity = $em->getRepository('TicmeUserBundle:User')->find($id);
 
-            $factory = $this->get('security.encoder_factory');
-            $encoder = $factory->getEncoder($user);
-
-            $password = $formUser->get('password')->getData();
-
-            $user->setPassword($encoder->encodePassword($password, $user->getSalt()));
-
-            $em->persist($user);
-
+            if (!$entity) {
+                throw $this->createNotFoundException('Unable to find User entity.');
+            }
+            $em->remove($entity);
             $em->flush();
-
-            return $this->redirectToRoute('ticme_back_user_edit');
-
         }
 
-        return $this->render('TicmeUserBundle:User:edit.html.twig',
-            array(
-                'formUser' => $formUser->createView()
-            )
-        );
+        return $this->redirect($this->generateUrl('user'));
+    }
+
+    /**
+     * Creates a form to delete a User entity by id.
+     *
+     * @param mixed $id The entity id
+     *
+     * @return \Symfony\Component\Form\Form The form
+     */
+    private function createDeleteForm($id)
+    {
+        return $this->createFormBuilder()
+            ->setAction($this->generateUrl('user_delete', array('id' => $id)))
+            ->setMethod('DELETE')
+            ->add('submit', 'submit', array('label' => 'Delete'))
+            ->getForm()
+        ;
     }
 }

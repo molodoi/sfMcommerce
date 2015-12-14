@@ -24,7 +24,13 @@
                                     <span class="pull-right">
                                         <a href="{{ path('ticme_back_user_show', {'id': user.id}) }}" class="btn btn-success btn-xs"><i class="fa fa-eye"></i> Voir</a>
                                         <a href="{{ path('ticme_back_user_edit', {'id': user.id}) }}" class="btn btn-info btn-xs"><i class="fa fa-edit"></i> Editer</a>
-                                        <a href="{{ path('ticme_back_user_delete', {'id': user.id}) }}" class="btn btn-danger btn-xs"><i class="fa fa-remove"></i> Supprimer</a>
+
+                                        <span class="pull-right">
+                                            {{ form_start(delete_form) }}
+                                                {{ form_widget(delete_form.submit, { 'label' : 'Supprimer', 'attr': {'class': 'btn btn-danger btn-xs', 'data-loading-text': 'Supprimer'} }) }}
+                                                {{ form_rest(delete_form) }}
+                                            {{ form_end(delete_form) }}
+                                        </span>
                                     </span>
                             </td>
                         </tr>

@@ -18,11 +18,20 @@ class UserType extends AbstractType
         $builder
             ->add('username', 'text')
             ->add('email', 'email')
+            ->add('roleList', 'choice', array(
+                'choices' => array(
+                    'ROLE_USER'         => 'UTILISATEUR',
+                    'ROLE_ADMIN'        => 'ADMIN',
+                    'ROLE_SUPER_ADMIN'  => 'SUPER ADMIN',
+                ),
+                'mapped' => false
+            ))
             ->add('password', 'repeated', array(
                 'type' => 'password',
                 'first_options'  => array('label' => 'Password'),
                 'second_options' => array('label' => 'Repeat Password'),
-            ));
+            ))
+        ;
     }
 
 

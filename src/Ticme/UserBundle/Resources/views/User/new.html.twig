@@ -1,0 +1,61 @@
+{% extends 'TicmeBackBundle::layout.html.twig' %}
+
+{% block content %}
+
+
+    {{ parent() }}
+    {% if form_errors(form) %}
+        <div class="alert alert-danger alert-dismissable">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+            <h4><i class="icon fa fa-ban"></i> Alerte!</h4>
+            Tous les champs de votre formulaire n'ont pas été validé.
+        </div>
+    {% endif %}
+    <div class="box box-primary">
+        <div class="box-header with-border">
+            <h3 class="box-title">Créer un tilisateur</h3>
+        </div><!-- /.box-header -->
+        {{ form_start(form, {'attr': { novalidate: 'novalidate' ,'role': 'form' }, 'multipart': { form_enctype: true }}) }}
+        <div class="box-body">
+            {#{{ dump(formProduct) }}#}
+            {{ form_errors(form) }}
+
+            {{ form_label(form.username) }}
+            <div class="form-group {% if form_errors(form.username) %} has-error {% endif %}">
+                {{ form_errors(form.username) }}
+                {{ form_widget(form.username, { 'attr': {'class': 'form-control', 'placeholder': 'Username'} }) }}
+            </div>
+
+            {{ form_label(form.email) }}
+            <div class="form-group {% if form_errors(form.email) %} has-error {% endif %}">
+                {{ form_errors(form.email) }}
+                {{ form_widget(form.email, { 'attr': {'class': 'form-control', 'placeholder': 'Email'} }) }}
+            </div>
+
+            {{ form_label(form.password.first) }}
+            <div class="form-group {% if form_errors(form.password.first) %} has-error {% endif %}">
+                {{ form_errors(form.password.first) }}
+                {{ form_widget(form.password.first, { 'attr': {'class': 'form-control', 'placeholder': 'Mot de passe'} }) }}
+            </div>
+
+            {{ form_label(form.password.second) }}
+            <div class="form-group {% if form_errors(form.password.second) %} has-error {% endif %}">
+                {{ form_errors(form.password.second) }}
+                {{ form_widget(form.password.second, { 'attr': {'class': 'form-control', 'placeholder': 'Vérification mot de passe'} }) }}
+            </div>
+
+            {{ form_label(form.roles) }}
+            <div class="form-group {% if form_errors(form.roles) %} has-error {% endif %}">
+                {{ form_errors(form.roles) }}
+                {{ form_widget(form.roles, { 'attr': {'class': 'form-control', 'placeholder': 'Valide'} }) }}
+            </div>
+
+            <div class="box-footer">
+                {{ form_widget(form.submit, { 'label' : 'Ajouter', 'attr': {'class': 'btn btn-primary', 'data-loading-text': 'Mettre à jour'} }) }}
+                <a href="{{ path('user') }}" class="btn btn-default"><i class="fa fa-mail-reply"></i> Revenir à la liste des utilisateur</a>
+            </div>
+            {{ form_widget(form._token) }}
+        </div>
+        {{ form_end(form) }}
+    </div>
+{% endblock %}
