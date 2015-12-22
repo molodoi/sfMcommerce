@@ -10,6 +10,15 @@ namespace Ticme\BackBundle\Repository;
  */
 class ProductRepository extends \Doctrine\ORM\EntityRepository
 {
+    public function findArray($array)
+    {
+        $qb = $this->createQueryBuilder('u')
+            ->select('u')
+            ->where('u.id IN (:array)')
+            ->setParameter('array', $array);
+        return $qb->getQuery()->getResult();
+    }
+
     public function byCategory($category){
         $qb = $this->createQueryBuilder('p')
             ->select('p')
@@ -18,5 +27,4 @@ class ProductRepository extends \Doctrine\ORM\EntityRepository
             ->setParameter('category', $category);
         return $qb->getQuery()->getResult();
     }
-
 }

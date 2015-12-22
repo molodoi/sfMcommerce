@@ -30,11 +30,16 @@
     <div id="sidebar-wrapper">
         <ul class="sidebar-nav nav-pills nav-stacked" id="menu">
 
-            <li class="active">
+            <li>
                 <a href="#"><span class="fa-stack fa-lg pull-left"><i class="fa fa-list fa-stack-1x "></i></span> Catégories</a>
-                <ul class="nav-pills nav-stacked" style="list-style-type:none;">
-                    <li><a href="{{ path('ticme_back_category_list') }}">Toutes les catégories</a></li>
-                    <li><a href="{{ path('ticme_back_category_create') }}">Créer une catégorie</a></li>
+
+                        <ul class="nav-pills nav-stacked" style="list-style-type:none;display: none;"  >
+                    <li>
+                        <a href="{{ path('ticme_back_category_list') }}">Toutes les catégories</a>
+                    </li>
+                    <li>
+                        <a href="{{ path('ticme_back_category_create') }}">Créer une catégorie</a>
+                    </li>
                 </ul>
             </li>
             <li>
@@ -78,12 +83,26 @@
             <li>
                 <a href="#"><span class="fa-stack fa-lg pull-left"><i class="fa fa-server fa-stack-1x "></i></span>Contact</a>
             </li>
+            <li>
+                <a href="{{ path('ticme_front_homepage') }}" target="_blank"><span class="fa-stack fa-lg pull-left"><i class="fa fa-bullseye fa-stack-1x "></i></span>Voir le frontend/vitrine</a>
+            </li>
         </ul>
     </div><!-- /#sidebar-wrapper -->
 
     <!-- Page Content -->
     <div id="page-content-wrapper">
         <div class="container-fluid">
+
+            {% if app.request.hasPreviousSession %}
+                {% for type, messages in app.session.flashbag.all() %}
+                    {% for message in messages %}
+                        <div class="{{ type }}">
+                            {{ message }}
+                        </div>
+                    {% endfor %}
+                {% endfor %}
+            {% endif %}
+
             {% block content %}
 
             {% endblock %}

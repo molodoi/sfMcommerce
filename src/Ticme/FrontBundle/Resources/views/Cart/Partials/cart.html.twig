@@ -1,0 +1,7 @@
+<a href="{{ path('ticme_front_cart') }}" class="dropdown-toggle">
+    {% if articles == 0 %}
+        <i class="fa fa-shopping-cart"></i> Mon panier
+    {% else %}
+        <i class="fa fa-shopping-cart"></i> ({{ articles }}) Mon panier
+    {% endif %}
+</a>

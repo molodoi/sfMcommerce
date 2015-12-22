@@ -113,38 +113,4 @@ class User extends BaseUser
     {
         return $this->address;
     }
-
-    /**
-     * Add order
-     *
-     * @param \Ticme\BackBundle\Entity\Ordering $order
-     *
-     * @return User
-     */
-    public function addOrder(\Ticme\BackBundle\Entity\Ordering $order)
-    {
-        $this->orders[] = $order;
-
-        return $this;
-    }
-
-    /**
-     * Remove order
-     *
-     * @param \Ticme\BackBundle\Entity\Ordering $order
-     */
-    public function removeOrder(\Ticme\BackBundle\Entity\Ordering $order)
-    {
-        $this->orders->removeElement($order);
-    }
-
-    /**
-     * Get orders
-     *
-     * @return \Doctrine\Common\Collections\Collection
-     */
-    public function getOrders()
-    {
-        return $this->orders;
-    }
 }

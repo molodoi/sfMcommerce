@@ -7,7 +7,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Ticme\BackBundle\Entity\Category;
 use Ticme\BackBundle\Entity\Product;
 
-class ProductController extends Controller
+class ProductController extends BaseController
 {
     public function indexAction()
     {
@@ -28,6 +28,15 @@ class ProductController extends Controller
         if (!$product) {
             throw $this->createNotFoundException('Unable to find Product entity.');
         }
+
+        $this->breadcrumbs(
+            array($product->getTitle() => $this->generateUrl("ticme_front_product_show",
+                array(
+                    'slug' => $product->getSlug() ,
+                    'id' => $product->getId(),
+                )
+            ))
+        );
 
         return $this->render('TicmeFrontBundle:Product:show.html.twig',
             array(

@@ -101,6 +101,11 @@ class Address
      */
     private $user;
 
+    public function __construct(){
+        $this->createdAt = new \DateTime('NOW');
+        $this->updatedAt = new \DateTime('NOW');
+    }
+
     /**
      * Get id
      *

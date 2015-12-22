@@ -44,7 +44,7 @@
                 <div class="thumbnail">
                     <img src="http://placehold.it/320x150" alt="">
                     <div class="caption">
-                        <h4 class="pull-right">{{ product.priceHt }}</h4>
+                        <h4 class="pull-right">{{ product.priceHt|tva(product.tva.multi) }} €</h4>
                         <h4>
                             <a href="{{ path('ticme_front_product_show', {'slug': product.slug, 'id': product.id}) }}">
                                 {{ product.title }}
@@ -52,15 +52,11 @@
                         </h4>
                         <p>{{ product.description }}</p>
                     </div>
-                    <div class="ratings">
-                        <p class="pull-right">15 reviews</p>
-                        <p>
-                            <span class="glyphicon glyphicon-star"></span>
-                            <span class="glyphicon glyphicon-star"></span>
-                            <span class="glyphicon glyphicon-star"></span>
-                            <span class="glyphicon glyphicon-star"></span>
-                            <span class="glyphicon glyphicon-star"></span>
-                        </p>
+                    <div class="text-center">
+                        <a href="{{ path('ticme_front_product_show', {'slug': product.slug, 'id': product.id}) }}" class="btn btn-success">Plus d'infos</a>
+                        <a href="{{ path('ticme_front_cart_add_product', {'id': product.id}) }}" class="btn btn-info">Ajouter au panier</a>
+                        <br />
+                        <br />
                     </div>
                 </div>
             </div>

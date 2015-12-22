@@ -5,6 +5,7 @@
 
     <link rel="stylesheet" href="{{ asset('/css/front/bootstrap.min.css') }}">
     <link rel="stylesheet" href="{{ asset('/css/front/shop-homepage.css') }}">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
 {% endblock %}
 
 {% block body %}
@@ -36,6 +37,9 @@
                 </ul>
 
                 <ul class="nav navbar-nav navbar-right">
+                    <li class="dropdown">
+                        {{ render(controller('TicmeFrontBundle:Cart:cartTopMenu')) }}
+                    </li>
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                             {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
@@ -77,6 +81,14 @@
     <!-- Page Content -->
     <div class="container">
         <div class="row">
+
+                    {% for type, messages in app.session.flashbag.all() %}
+                        {% for message in messages %}
+                            <div class="alert alert-{{ type }}" role="alert">
+                                {{ message }}
+                            </div>
+                        {% endfor %}
+                    {% endfor %}
                 {% block content %}
 
                 {% endblock %}

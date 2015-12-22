@@ -36,14 +36,16 @@ class Ordering
     private $reference;
 
     /**
+     * Cette propriété contient tous les éléments d'une commande
      * @var array
      *
-     * @ORM\Column(name="products", type="array")
+     * @ORM\Column(name="content_order", type="array")
      */
-    private $products;
+    private $contorder;
 
     /**
-     * @ORM\OneToOne(targetEntity="Ticme\UserBundle\Entity\User", cascade={"persist"})
+     * @ORM\ManyToOne(targetEntity="Ticme\UserBundle\Entity\User", inversedBy="orders")
+     * @ORM\JoinColumn(nullable=true)
      */
     private $user;
 
@@ -155,9 +157,9 @@ class Ordering
      *
      * @return Ordering
      */
-    public function setProducts($products)
+    public function setContorder($contorder)
     {
-        $this->products = $products;
+        $this->contorder = $contorder;
 
         return $this;
     }
@@ -167,9 +169,9 @@ class Ordering
      *
      * @return array
      */
-    public function getProducts()
+    public function getContorder()
     {
-        return $this->products;
+        return $this->contorder;
     }
 
     /**

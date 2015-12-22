@@ -1,6 +1,9 @@
 ticme_front_products_by_category:
     path: /category/{id}/{page}
     defaults: { _controller: TicmeFrontBundle:Product:showProductByCategoryId, page: 1 }
+    requirements:
+        id: "\d+"
+        page: "\d+"
 
 ticme_front_product_show:
     path: /show/{slug}-{id}

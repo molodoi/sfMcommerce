@@ -1,0 +1,113 @@
+{% extends 'TicmeFrontBundle::layout.html.twig' %}
+
+
+{% block content %}
+    <div class="row">
+        <div class="col-lg-12">
+            <h2>Livraison</h2>
+            <em>
+                Indiquez votre adresse de livraison et de facturation.
+
+            </em>
+            <div id="collapseOne" class="accordion-body collapse in">
+                <div class="accordion-inner">
+                    <div class="col-lg-6">
+
+                        {% if user.address|length != 0 %}
+                            <form action="{{ path('ticme_front_cart_validation') }}" method="POST">
+                                <h4>Adresse de livraison</h4>
+                                {% for adresse in user.address %}
+                                    <label class="radio">
+                                        <input type="radio" name="delivery" value="{{ adresse.id }}" {% if loop.index0 == 0 %}checked="checked"{% endif %}>
+                                        {{ adresse.address }}, {{ adresse.zipcode }} {{ adresse.city }} - {{ adresse.country }} <a href="{{ path('ticme_front_cart_livraisonAdresseSuppression', { 'id' : adresse.id }) }}"><i class="icon-trash"></i></a>
+                                        <br />{{ adresse.lastname }} {{ adresse.name }}
+                                    </label>
+                                {% endfor %}
+
+                                <br /><br />
+
+                                <h4>Adresse de facturation</h4>
+                                {% for adresse in user.address %}
+                                    <label class="radio">
+                                        <input type="radio" name="billing" value="{{ adresse.id }}" {% if loop.index0 == 0 %}checked="checked"{% endif %}>
+                                        {{ adresse.address }}, {{ adresse.zipcode }} {{ adresse.city }} - {{ adresse.country }} <a href="{{ path('ticme_front_cart_livraisonAdresseSuppression', { 'id' : adresse.id }) }}"><i class="icon-trash"></i></a>
+                                        <br />{{ adresse.lastname }} {{ adresse.name }}
+                                    </label>
+                                {% endfor %}
+
+                                <br />
+
+                                <button class="btn btn-primary">Valider mes Adresses</button>
+                            </form>
+                        {% endif %}
+                    </div>
+
+
+                    <div class="col-lg-6">
+                        <h4>Ajouter une nouvelle adresse</h4>
+                            {{ form_start(form, {'attr': { novalidate: 'novalidate' ,'role': 'form' }, 'multipart': { form_enctype: true }}) }}
+                            <div class="box-body">
+                                {#{{ dump(formProduct) }}#}
+                                {{ form_errors(form) }}
+
+                                {{ form_label(form.name, 'Nom') }}
+                                <div class="form-group {% if form_errors(form.name) %} has-error {% endif %}">
+                                    {{ form_errors(form.name) }}
+                                    {{ form_widget(form.name, { 'attr': {'class': 'form-control', 'placeholder': 'Nom'} }) }}
+                                </div>
+
+                                {{ form_label(form.lastname, 'Prenom') }}
+                                <div class="form-group {% if form_errors(form.lastname) %} has-error {% endif %}">
+                                    {{ form_errors(form.lastname) }}
+                                    {{ form_widget(form.lastname, { 'attr': {'class': 'form-control', 'placeholder': 'Prenom'} }) }}
+                                </div>
+
+                                {{ form_label(form.phone, 'Tel') }}
+                                <div class="form-group {% if form_errors(form.phone) %} has-error {% endif %}">
+                                    {{ form_errors(form.phone) }}
+                                    {{ form_widget(form.phone, { 'attr': {'class': 'form-control', 'placeholder': 'Prenom'} }) }}
+                                </div>
+
+                                {{ form_label(form.address, 'Adresse') }}
+                                <div class="form-group {% if form_errors(form.address) %} has-error {% endif %}">
+                                    {{ form_errors(form.address) }}
+                                    {{ form_widget(form.address, { 'attr': {'class': 'form-control', 'placeholder': 'Adresse'} }) }}
+                                </div>
+
+                                {{ form_label(form.zipcode, 'Code Postal') }}
+                                <div class="form-group {% if form_errors(form.zipcode) %} has-error {% endif %}">
+                                    {{ form_errors(form.zipcode) }}
+                                    {{ form_widget(form.zipcode, { 'attr': {'class': 'form-control', 'placeholder': 'Code Postal'} }) }}
+                                </div>
+
+                                {{ form_label(form.city, 'Ville') }}
+                                <div class="form-group {% if form_errors(form.city) %} has-error {% endif %}">
+                                    {{ form_errors(form.city) }}
+                                    {{ form_widget(form.city, { 'attr': {'class': 'form-control', 'placeholder': 'Ville'} }) }}
+                                </div>
+
+
+                                {{ form_label(form.country, 'Pays') }}
+                                <div class="form-group {% if form_errors(form.country) %} has-error {% endif %}">
+                                    {{ form_errors(form.country) }}
+                                    {{ form_widget(form.country, { 'attr': {'class': 'form-control', 'placeholder': 'Pays'} }) }}
+                                </div>
+
+                                {{ form_label(form.complement, 'Complement') }}
+                                <div class="form-group {% if form_errors(form.complement) %} has-error {% endif %}">
+                                    {{ form_errors(form.complement) }}
+                                    {{ form_widget(form.complement, { 'attr': {'class': 'form-control', 'placeholder': 'Complement'} }) }}
+                                </div>
+
+
+                            {{ form_widget(form) }}
+
+                                {{ form_rest(form) }}
+                                {{ form_end(form) }}
+                            <button class="btn btn-primary" type="submit">Ajouter</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

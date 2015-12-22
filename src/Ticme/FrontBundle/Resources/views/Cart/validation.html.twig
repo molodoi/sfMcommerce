@@ -1,0 +1,97 @@
+{% extends 'TicmeFrontBundle::layout.html.twig' %}
+
+
+{% block content %}
+    <div class="row">
+
+        <div class="col-md-4">
+            {{ render(controller('TicmeFrontBundle:Category:categorieMenu')) }}
+        </div>
+
+        <div class="col-md-8">
+            {% for flashMessage in app.session.flashbag.get('success') %}
+                <div class="alert alert-success">
+                    {{ flashMessage }}
+                </div>
+            {% endfor %}
+
+            <h2>Valider votre panier</h2>
+            <table class="table table-striped table-hover">
+                <thead>
+                <tr>
+                    <th>Références</th>
+                    <th>Quantité</th>
+                    <th>Prix unitaire</th>
+                    <th>Total HT</th>
+                </tr>
+                </thead>
+                <tbody>
+                {#{{ dump(order) }}#}
+                {% if order|length == 0 %}
+                    <tr>
+                        <td colspan="4" class="text-center">Aucun articles dans votre panier</td>
+                    </tr>
+                {% endif %}
+                {% for key, value in order.contorder.product %}
+                    <tr>
+                        <form action="{{ path('ticme_front_cart_add_product', { 'id' : key }) }}" method="get">
+                            <td>{{ value.reference }}</td>
+                            <td>
+                                {{ value.quantite }}
+                            </td>
+                            <td>{{ value.prixHT }} €</td>
+                            <td>{{ value.prixHT * value.quantite }} €</td>
+                        </form>
+                    </tr>
+
+                {% endfor %}
+                </tbody>
+            </table>
+
+            {% if order|length != 0 %}
+                <dl class="dl-horizontal pull-right">
+                    <dt>Total HT :</dt><dd>{{ order.contorder.prixHT }} €</dd>
+
+                    {% for key, value in order.contorder.tva %}
+                        <dt>TVA {{ key }} :</dt><dd>{{ value }} €</dd>
+                    {% endfor %}
+
+                    <dt>Total TTC :</dt><dd>{{ order.contorder.prixTTC }} €</dd>
+                </dl>
+
+            {% endif %}
+            <div class="clearfix"></div>
+            <div class="row">
+                <div class="col-lg-6">
+                    <dl class="pull-left">
+                        <dt><h4>Adresse de livraison</h4></dt>
+                        <dt>{{ order.contorder.delivery.lastname }} {{ order.contorder.delivery.name }}</dt>
+                        <dt>{{ order.contorder.delivery.address }}</dt>
+                        <dt>{{ order.contorder.delivery.zipcode }} {{ order.contorder.delivery.city }} - {{ order.contorder.delivery.country }}</dt>
+                        <dt>{{ order.contorder.delivery.complement }}</dt>
+                    </dl>
+                </div>
+
+                <div class="col-lg-6">
+                    <dl class="pull-right">
+                        <dt><h4>Adresse de facturation</h4></dt>
+                        <dt>{{ order.contorder.billing.lastname }} {{ order.contorder.billing.name }}</dt>
+                        <dt>{{ order.contorder.billing.address }}</dt>
+                        <dt>{{ order.contorder.billing.zipcode }} {{ order.contorder.billing.city }} - {{ order.contorder.billing.country }}</dt>
+                        <dt>{{ order.contorder.billing.complement }}</dt>
+                    </dl>
+                </div>
+                <div class="clearfix"></div>
+                <form action="{{ path('ticme_front_cart_order_validation', { 'id' : order.id }) }}" method="POST"/>
+                    <input name="token" type="hidden" value="{{ order.contorder.token }}" />
+                    <input name="prix" type="hidden" value="{{ order.contorder.prixTTC }}" />
+                    <input name="date" type="hidden" value="{{ order.createdAt.date|date('dmyhms') }}" />
+                    <button type="submit" class="btn btn-success pull-right">Payer</button>
+                </form>
+
+                <a href="{{ path('ticme_front_cart_delivery') }}" class="btn btn-primary">retour</a>
+
+            </div>
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,3 @@
+ticme_front_cart_order_validation:
+    pattern:  /api/banque/{id}
+    defaults: { _controller: TicmeFrontBundle:Ordering:validationOrder }

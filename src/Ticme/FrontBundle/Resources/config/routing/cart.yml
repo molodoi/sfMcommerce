@@ -1,0 +1,23 @@
+ticme_front_cart_delete_product:
+    pattern:  /delete/{id}
+    defaults: { _controller: TicmeFrontBundle:Cart:delete }
+
+ticme_front_cart_add_product:
+    pattern:  /add/{id}
+    defaults: { _controller: TicmeFrontBundle:Cart:add }
+
+ticme_front_cart:
+    pattern:  /
+    defaults: { _controller: TicmeFrontBundle:Cart:cart }
+
+ticme_front_cart_delivery:
+    pattern:  /delivery
+    defaults: { _controller: TicmeFrontBundle:Cart:delivery }
+
+ticme_front_cart_validation:
+    pattern:  /validation
+    defaults: { _controller: TicmeFrontBundle:Cart:validation }
+
+ticme_front_cart_livraisonAdresseSuppression:
+    pattern:  /livraison/adresse/suppression/{id}
+    defaults: { _controller: TicmeFrontBundle:Cart:adresseSuppression }

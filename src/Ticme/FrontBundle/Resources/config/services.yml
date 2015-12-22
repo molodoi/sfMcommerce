@@ -1,4 +1,24 @@
 services:
-#    ticme_front.example:
-#        class: Ticme\FrontBundle\Example
-#        arguments: [@service_id, "plain_value", %parameter%]
+    setNewFacture:
+        class: Ticme\FrontBundle\Services\GetFacture
+        arguments: [@service_container]
+
+    setNewReference:
+        class: Ticme\FrontBundle\Services\GetReference
+        arguments: [@security.context, @doctrine.orm.entity_manager]
+
+    tva:
+        class: Ticme\FrontBundle\Twig\Extension\TvaExtension
+        tags:
+            - { name: twig.extension }
+
+    amountTva:
+        class: Ticme\FrontBundle\Twig\Extension\AmountTvaExtension
+        tags:
+            - { name: twig.extension }
+
+    redirectListener:
+        class: Ticme\FrontBundle\Listener\RedirectListener
+        arguments: [@service_container, @session]
+        tags:
+            - { name: kernel.event_listener, event: kernel.request, method: onKernelRequest }
