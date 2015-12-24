@@ -142,22 +142,23 @@ class OrderingController extends BaseController
         $em->flush();
 
         $session = $this->container->get('session');
+        $session->remove('address');
         $session->remove('cart');
         $session->remove('order');
 
         //Ici le mail de validation
-        /*$message = \Swift_Message::newInstance()
+        $message = \Swift_Message::newInstance()
             ->setSubject('Validation de votre commande')
             ->setFrom(array('contact@ticme.fr' => "Ticme"))
-            ->setTo($order->getUtilisateur()->getEmailCanonical())
+            ->setTo($order->getUser()->getEmailCanonical())
             ->setCharset('utf-8')
             ->setContentType('text/html')
-            ->setBody($this->renderView('TicmeFrontBundle:Default:SwiftLayout/validationCommande.html.twig',array('user' => $order->getUser())));
+            ->setBody($this->renderView('TicmeFrontBundle:Mail:validationCommande.html.twig',array('user' => $order->getUser())));
 
-        $this->get('mailer')->send($message);*/
+        $this->get('mailer')->send($message);
 
         $this->get('session')->getFlashBag()->add('success','Votre commande est validé avec succès');
-        return $this->redirect($this->generateUrl('billings'));
+        return $this->redirect($this->generateUrl('ticme_front_homepage'));
     }
 
 }
