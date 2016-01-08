@@ -137,8 +137,8 @@ class OrderingController extends BaseController
         }
 
         $order->setValidated(1);
-        //$order->setReference($this->container->get('setNewReference')->reference()); //Service
-        $order->setReference(1); //Service
+        $order->setReference($this->container->get('setNewReference')->reference()); //Service
+        //$order->setReference(1); //Service
         $em->flush();
 
         $session = $this->container->get('session');

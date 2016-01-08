@@ -1,3 +1,11 @@
+ticme_front_factures:
+    path:     /profile/factures
+    defaults: { _controller: "TicmeUserBundle:Billing:factures" }
+
+ticme_front_facturesPDF:
+    path:     /profile/factures/pdf/{id}
+    defaults: { _controller: "TicmeUserBundle:Billing:facturesPDF" }
+
 ticme_front_categorie:
     resource: "@TicmeFrontBundle/Resources/config/routing/category.yml"
     prefix:   /category

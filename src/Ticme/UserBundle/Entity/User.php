@@ -10,6 +10,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 /**
  * @ORM\Entity
  * @ORM\Table(name="um_user")
+ * @ORM\Entity(repositoryClass="Ticme\UserBundle\Repository\UserRepository")
  */
 class User extends BaseUser
 {

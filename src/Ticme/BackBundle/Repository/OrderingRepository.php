@@ -10,4 +10,16 @@ namespace Ticme\BackBundle\Repository;
  */
 class OrderingRepository extends \Doctrine\ORM\EntityRepository
 {
+    public function byFacture($user){
+        $qb = $this->createQueryBuilder('o')
+            ->select('o')
+            ->where('o.user = :user')
+            ->andWhere('o.validated = 1')
+            ->andWhere('o.reference != 0')
+            ->orderBy('o.id')
+            ->setParameter('user', $user)
+        ;
+        return $qb->getQuery()->getResult();
+    }
+
 }

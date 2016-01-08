@@ -1,0 +1,55 @@
+{% extends 'TicmeFrontBundle::layout.html.twig' %}
+
+{% block content %}
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4">
+                {{ render(controller('TicmeFrontBundle:Category:categorieMenu')) }}
+            </div>
+            <div class="col-md-8">
+
+                {% for flashMessage in app.session.flashbag.get('success') %}
+                    <div class="alert alert-success">
+                        {{ flashMessage }}
+                    </div>
+                {% endfor %}
+                {% for flashMessage in app.session.flashbag.get('error') %}
+                    <div class="alert alert-errors">
+                        {{ flashMessage }}
+                    </div>
+                {% endfor %}
+
+                <h2>Factures</h2>
+                <form>
+                    <table class="table table-striped table-hover">
+                        <thead>
+                            <tr>
+                                <th>Références</th>
+                                <th>Date</th>
+                                <th>Prix TTC</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        {% if factures|length == 0 %}
+                            <tr>
+                                <td colspan="4" class="text-center">Ancune facture actuellement.</td>
+                            </tr>
+                        {% endif %}
+                        {% for facture in factures %}
+                            <tr>
+                                <td><strong>Ref: {{ facture.reference }}</strong></td>
+                                <td>{{ facture.createdAt|date('d/m/Y') }}</td>
+                                <td>{{ facture.contorder.prixTTC }} €</td>
+                                <td><a href="{{ path('ticme_front_facturesPDF', { 'id' : facture.id }) }}" target="_blank"><i class="fa fa-file-pdf-o"></i></a></td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </form>
+
+            </div>
+
+        </div>
+    </div>
+{% endblock %}
