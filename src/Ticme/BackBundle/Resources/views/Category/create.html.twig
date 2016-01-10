@@ -28,7 +28,7 @@
             {{ form_label(formCategory.description) }}
             <div class="form-group {% if form_errors(formCategory.description) %} has-error {% endif %}">
                 {{ form_errors(formCategory.description) }}
-                {{ form_widget(formCategory.description, { 'attr': {'class': 'form-control', 'placeholder': 'Decription'} }) }}
+                {{ form_widget(formCategory.description, { 'attr': {'class': 'form-control ckeditor', 'placeholder': 'Decription'} }) }}
             </div>
 
             {{ form_label(formCategory.image) }}

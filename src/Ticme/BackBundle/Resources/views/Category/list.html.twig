@@ -19,7 +19,7 @@
                             <tr>
                                 <td>{{ categorie.id }}</td>
                                 <td>{{ categorie.title }}</td>
-                                <td>{{ categorie.description }}</td>
+                                <td>{{ categorie.description|raw }}</td>
                                 <td>
                                     <span class="pull-right">
                                         <a href="{{ path('ticme_back_category_show', {'id': categorie.id}) }}" class="btn btn-success btn-xs"><i class="fa fa-eye"></i> Voir</a>

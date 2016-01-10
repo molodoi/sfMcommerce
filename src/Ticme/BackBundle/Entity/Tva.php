@@ -190,4 +190,8 @@ class Tva
     {
         return $this->updatedAt;
     }
+
+    public function __toString(){
+        return $this->getTitle();
+    }
 }

@@ -19,16 +19,16 @@
             {#{{ dump(formProduct) }}#}
             {{ form_errors(formProduct) }}
 
+            {{ form_label(formProduct.category) }}
+            <div class="form-group {% if form_errors(formProduct.category) %} has-error {% endif %}">
+                {{ form_errors(formProduct.category) }}
+                {{ form_widget(formProduct.category, { 'attr': {'class': 'form-control'} }) }}
+            </div>
+
             {{ form_label(formProduct.title) }}
             <div class="form-group {% if form_errors(formProduct.title) %} has-error {% endif %}">
                 {{ form_errors(formProduct.title) }}
                 {{ form_widget(formProduct.title, { 'attr': {'class': 'form-control', 'placeholder': 'Titre'} }) }}
-            </div>
-
-            {{ form_label(formProduct.description) }}
-            <div class="form-group {% if form_errors(formProduct.description) %} has-error {% endif %}">
-                {{ form_errors(formProduct.description) }}
-                {{ form_widget(formProduct.description, { 'attr': {'class': 'form-control', 'placeholder': 'Description'} }) }}
             </div>
 
             {{ form_label(formProduct.priceHt) }}
@@ -36,6 +36,19 @@
                 {{ form_errors(formProduct.priceHt) }}
                 {{ form_widget(formProduct.priceHt, { 'attr': {'class': 'form-control', 'placeholder': 'Prix hors taxe'} }) }}
             </div>
+
+            {{ form_label(formProduct.tva) }}
+            <div class="form-group {% if form_errors(formProduct.tva) %} has-error {% endif %}">
+                {{ form_errors(formProduct.tva) }}
+                {{ form_widget(formProduct.tva, { 'attr': {'class': 'form-control'} }) }}
+            </div>
+
+            {{ form_label(formProduct.description) }}
+            <div class="form-group {% if form_errors(formProduct.description) %} has-error {% endif %}">
+                {{ form_errors(formProduct.description) }}
+                {{ form_widget(formProduct.description, { 'attr': {'class': 'form-control ckeditor', 'placeholder': 'Description'} }) }}
+            </div>
+
 
 
             <div class="form-group {% if form_errors(formProduct.available) %} has-error {% endif %}">

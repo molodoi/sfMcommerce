@@ -10,6 +10,7 @@ use Doctrine\ORM\Mapping as ORM;
  *
  * @ORM\Table(name="um_product")
  * @ORM\Entity(repositoryClass="Ticme\BackBundle\Repository\ProductRepository")
+ * @ORM\HasLifecycleCallbacks
  */
 class Product
 {
@@ -51,13 +52,13 @@ class Product
     private $available;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Ticme\BackBundle\Entity\Tva")
+     * @ORM\ManyToOne(targetEntity="Ticme\BackBundle\Entity\Tva", cascade={"persist"})
      * @ORM\JoinColumn(name="tva_id", referencedColumnName="id", onDelete="SET NULL")
      **/
     private $tva;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Ticme\BackBundle\Entity\Category")
+     * @ORM\ManyToOne(targetEntity="Ticme\BackBundle\Entity\Category", cascade={"persist"})
      * @ORM\JoinColumn(name="category_id", referencedColumnName="id", onDelete="SET NULL")
      **/
     private $category;
@@ -91,6 +92,17 @@ class Product
      * @ORM\Column(length=180, unique=true)
      */
     private $slug;
+
+
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->createdAt = new \DateTime('NOW');
+        $this->updatedAt = new \DateTime('NOW');
+    }
+
 
     /**
      * Get id
@@ -199,54 +211,6 @@ class Product
     }
 
     /**
-     * Set createdAt
-     *
-     * @param \DateTime $createdAt
-     *
-     * @return Product
-     */
-    public function setCreatedAt($createdAt)
-    {
-        $this->createdAt = $createdAt;
-
-        return $this;
-    }
-
-    /**
-     * Get createdAt
-     *
-     * @return \DateTime
-     */
-    public function getCreatedAt()
-    {
-        return $this->createdAt;
-    }
-
-    /**
-     * Set updatedAt
-     *
-     * @param \DateTime $updatedAt
-     *
-     * @return Product
-     */
-    public function setUpdatedAt($updatedAt)
-    {
-        $this->updatedAt = $updatedAt;
-
-        return $this;
-    }
-
-    /**
-     * Get updatedAt
-     *
-     * @return \DateTime
-     */
-    public function getUpdatedAt()
-    {
-        return $this->updatedAt;
-    }
-
-    /**
      * Set tva
      *
      * @param \Ticme\BackBundle\Entity\Tva $tva
@@ -341,4 +305,61 @@ class Product
     {
         return $this->user;
     }
+
+
+    /**
+     * Set createdAt
+     *
+     * @param \DateTime $createdAt
+     *
+     * @return Product
+     */
+    public function setCreatedAt($createdAt)
+    {
+        $this->createdAt = $createdAt;
+
+        return $this;
+    }
+
+    /**
+     * Get createdAt
+     *
+     * @return \DateTime
+     */
+    public function getCreatedAt()
+    {
+        return $this->createdAt;
+    }
+
+    /**
+     * @ORM\PrePersist()
+     */
+    public function setUpdatedAtValue(){
+        $this->setUpdatedAt(new \DateTime('NOW'));
+    }
+
+    /**
+     * Set updatedAt
+     *
+     * @param \DateTime $updatedAt
+     *
+     * @return Product
+     */
+    public function setUpdatedAt($updatedAt)
+    {
+        $this->updated_at = $updatedAt;
+
+        return $this;
+    }
+
+    /**
+     * Get updatedAt
+     *
+     * @return \DateTime
+     */
+    public function getUpdatedAt()
+    {
+        return $this->updated_at;
+    }
+
 }

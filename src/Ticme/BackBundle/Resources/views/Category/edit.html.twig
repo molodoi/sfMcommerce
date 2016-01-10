@@ -26,15 +26,24 @@
             {{ form_label(formCategory.description) }}
             <div class="form-group {% if form_errors(formCategory.description) %} has-error {% endif %}">
                 {{ form_errors(formCategory.description) }}
-                {{ form_widget(formCategory.description, { 'attr': {'class': 'form-control', 'placeholder': 'Decription'} }) }}
+                {{ form_widget(formCategory.description, { 'attr': {'class': 'form-control ckeditor', 'placeholder': 'Decription'} }) }}
             </div>
+{#
+            {% if formCategory.image is defined and categorie.image and categorie.image.name %}
+                {{ form_label(formCategory.image) }}
 
-            {{ form_label(formCategory.image) }}
+                <div class="form-group {% if form_errors(formCategory.image.name) %} has-error {% endif %}">
+                    {{ form_errors(formCategory.image.name) }}
+                    {{ form_widget(formCategory.image.name, { 'attr': {'class': 'form-control', 'placeholder': categorie.image.name} }) }}
+                </div>
 
-            <div class="form-group {% if form_errors(formCategory.image.name) %} has-error {% endif %}">
-                {{ form_errors(formCategory.image.name) }}
-                {{ form_widget(formCategory.image.name, { 'attr': {'class': 'form-control', 'placeholder': categorie.image.name} }) }}
-            </div>
+                {{ form_label(formCategory.image) }}
+
+                <div class="form-group {% if form_errors(formCategory.image.file) %} has-error {% endif %}">
+                    {{ form_errors(formCategory.image.file) }}
+                    {{ form_widget(formCategory.image.file, { 'attr': {'class': 'form-control', 'placeholder': categorie.image.file} }) }}
+                </div>
+            {% endif %}#}
 
             <div class="fileinput fileinput-new input-group" data-provides="fileinput">
                 {{ form_errors(formCategory.image) }}
@@ -42,7 +51,7 @@
 
                     <i class="glyphicon glyphicon-file fileinput-exists" style="display: inline;"></i>
                     <span class="fileinput-filename">
-                        {% if categorie.image.path %}
+                        {% if categorie.image.path is defined %}
                             {{ categorie.image.path }}
                         {% endif %}
                     </span>

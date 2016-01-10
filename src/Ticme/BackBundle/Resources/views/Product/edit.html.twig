@@ -2,7 +2,7 @@
 
 {% block content %}
     {{ parent() }}
-    {% if form_errors(formCategory) %}
+    {% if form_errors(formProduct) %}
         <div class="alert alert-danger alert-dismissable">
             <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
             <h4><i class="icon fa fa-ban"></i> Alerte!</h4>
@@ -13,7 +13,7 @@
         <div class="box-header with-border">
             <h3 class="box-title">Editer une Catégorie</h3>
         </div><!-- /.box-header -->
-        {{ form_start(formCategory, {'attr': { novalidate: 'novalidate' ,'role': 'form' }, 'multipart': { form_enctype: true }}) }}
+        {{ form_start(formProduct, {'attr': { novalidate: 'novalidate' ,'role': 'form' }, 'multipart': { form_enctype: true }}) }}
         <div class="box-body">
             {#{{ dump(formProduct) }}#}
             {{ form_errors(formProduct) }}
@@ -27,7 +27,7 @@
             {{ form_label(formProduct.description) }}
             <div class="form-group {% if form_errors(formProduct.description) %} has-error {% endif %}">
                 {{ form_errors(formProduct.description) }}
-                {{ form_widget(formProduct.description, { 'attr': {'class': 'form-control', 'placeholder': 'Description'} }) }}
+                {{ form_widget(formProduct.description, { 'attr': {'class': 'form-control ckeditor', 'placeholder': 'Description'} }) }}
             </div>
 
             {{ form_label(formProduct.priceHt) }}
@@ -49,6 +49,6 @@
             </div>
             {{ form_rest(formProduct) }}
         </div>
-        {{ form_end(formCategory) }}
+        {{ form_end(formProduct) }}
     </div>
 {% endblock %}

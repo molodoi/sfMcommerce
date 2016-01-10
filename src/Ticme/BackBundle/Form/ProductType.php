@@ -26,6 +26,8 @@ class ProductType extends AbstractType
                 'label'     => 'Afficher publiquement ?',
                 'required'  => false,
             ))
+            ->add('category')
+            ->add('tva')
         ;
         //Le bouton submit est à ajouter de préférence en static dans les vues
     }
