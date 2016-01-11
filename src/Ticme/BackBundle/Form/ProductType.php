@@ -28,6 +28,7 @@ class ProductType extends AbstractType
             ))
             ->add('category')
             ->add('tva')
+            ->add('image', new MediaType() )
         ;
         //Le bouton submit est à ajouter de préférence en static dans les vues
     }

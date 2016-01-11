@@ -49,7 +49,20 @@
                 {{ form_widget(formProduct.description, { 'attr': {'class': 'form-control ckeditor', 'placeholder': 'Description'} }) }}
             </div>
 
+            {{ form_label(formProduct.image) }}
 
+            <div class="form-group {% if form_errors(formProduct.image.name) %} has-error {% endif %}">
+                {{ form_errors(formProduct.image.name) }}
+                {{ form_widget(formProduct.image.name, { 'attr': {'class': 'form-control', 'placeholder': 'Alt'} }) }}
+            </div>
+            <div class="fileinput fileinput-new input-group" data-provides="fileinput">
+                {{ form_errors(formProduct.image) }}
+                <div class="form-control" data-trigger="fileinput"><i class="glyphicon glyphicon-file fileinput-exists"></i> <span class="fileinput-filename"></span></div>
+                <span class="input-group-addon btn btn-default btn-file"><span class="fileinput-new">Select file</span><span class="fileinput-exists">Change</span>
+                    {{ form_widget(formProduct.image.file) }}
+                </span>
+                <a href="#" class="input-group-addon btn btn-default fileinput-exists" data-dismiss="fileinput">Remove</a>
+            </div>
 
             <div class="form-group {% if form_errors(formProduct.available) %} has-error {% endif %}">
                 {{ form_errors(formProduct.available) }}

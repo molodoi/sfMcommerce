@@ -64,6 +64,15 @@ class Product
     private $category;
 
     /**
+     * @var string
+     *
+     * @ORM\OneToOne(targetEntity="Ticme\BackBundle\Entity\Media", cascade={"persist","remove"})
+     * @ORM\JoinColumn(nullable=true)
+     *
+     */
+    private $image;
+
+    /**
      * @ORM\ManyToOne(targetEntity="Ticme\UserBundle\Entity\User", inversedBy="products")
      * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
      */
@@ -258,19 +267,7 @@ class Product
         return $this->category;
     }
 
-    /**
-     * Set slug
-     *
-     * @param string $slug
-     *
-     * @return Product
-     */
-    public function setSlug($slug)
-    {
-        $this->slug = $slug;
 
-        return $this;
-    }
 
     /**
      * Get slug
@@ -310,15 +307,12 @@ class Product
     /**
      * Set createdAt
      *
-     * @param \DateTime $createdAt
-     *
-     * @return Product
+     * @ORM\PrePersist
      */
-    public function setCreatedAt($createdAt)
+    public function setCreatedAt()
     {
-        $this->createdAt = $createdAt;
-
-        return $this;
+        $this->createdAt = new \DateTime();
+        $this->updatedAt = new \DateTime();
     }
 
     /**
@@ -332,24 +326,13 @@ class Product
     }
 
     /**
-     * @ORM\PrePersist()
-     */
-    public function setUpdatedAtValue(){
-        $this->setUpdatedAt(new \DateTime('NOW'));
-    }
-
-    /**
      * Set updatedAt
      *
-     * @param \DateTime $updatedAt
-     *
-     * @return Product
+     * @ORM\PreUpdate
      */
-    public function setUpdatedAt($updatedAt)
+    public function setUpdatedAt()
     {
-        $this->updated_at = $updatedAt;
-
-        return $this;
+        $this->updatedAt = new \DateTime();
     }
 
     /**
@@ -359,7 +342,28 @@ class Product
      */
     public function getUpdatedAt()
     {
-        return $this->updated_at;
+        return $this->updatedAt;
     }
 
+    /**
+     * Set image
+     *
+     * @param \Ticme\BackBundle\Entity\Media $image
+     *
+     * @return Category
+     */
+    public function setImage(\Ticme\BackBundle\Entity\Media $image = null)
+    {
+        $this->image = $image;
+    }
+
+    /**
+     * Get image
+     *
+     * @return \Ticme\BackBundle\Entity\Media
+     */
+    public function getImage()
+    {
+        return $this->image;
+    }
 }

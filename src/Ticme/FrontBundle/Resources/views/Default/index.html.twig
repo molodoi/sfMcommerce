@@ -42,7 +42,11 @@
         {% for product in products %}
             <div class="col-sm-4 col-lg-4 col-md-4">
                 <div class="thumbnail">
-                    <img src="http://placehold.it/320x150" alt="">
+                    {% if product.image.path  is not null %}
+                        <img src="{{ asset('uploads/categories/' ~ product.image.path) }}" alt="{{ product.image.name }}">
+                    {% else %}
+                        <img src="http://placehold.it/320x150" alt="">
+                    {% endif %}
                     <div class="caption">
                         <h4 class="pull-right">{{ product.priceHt|tva(product.tva.multi) }} €</h4>
                         <h4>
@@ -50,7 +54,7 @@
                                 {{ product.title }}
                             </a>
                         </h4>
-                        <p>{{ product.description }}</p>
+                        <p>{{ product.description|raw }}</p>
                     </div>
                     <div class="text-center">
                         <a href="{{ path('ticme_front_product_show', {'slug': product.slug, 'id': product.id}) }}" class="btn btn-success">Plus d'infos</a>

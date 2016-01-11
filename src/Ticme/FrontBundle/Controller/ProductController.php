@@ -25,9 +25,13 @@ class ProductController extends BaseController
 
     public function showAction(Product $product, Request $request)
     {
+
         if (!$product) {
             throw $this->createNotFoundException('Unable to find Product entity.');
         }
+
+        $em = $this->getDoctrine()->getManager();
+        $product = $em->getRepository('TicmeBackBundle:Product')->myFindProductById($product);
 
         $this->breadcrumbs(
             array($product->getTitle() => $this->generateUrl("ticme_front_product_show",

@@ -12,9 +12,9 @@ class ProductRepository extends \Doctrine\ORM\EntityRepository
 {
     public function findArray($array)
     {
-        $qb = $this->createQueryBuilder('u')
-            ->select('u')
-            ->where('u.id IN (:array)')
+        $qb = $this->createQueryBuilder('p')
+            ->select('p')
+            ->where('p.id IN (:array)')
             ->setParameter('array', $array);
         return $qb->getQuery()->getResult();
     }
@@ -22,9 +22,44 @@ class ProductRepository extends \Doctrine\ORM\EntityRepository
     public function byCategory($category){
         $qb = $this->createQueryBuilder('p')
             ->select('p')
+            ->select('p, i , c, t, u')
+            ->leftJoin('p.image', 'i')
+            ->leftJoin('p.category', 'c')
+            ->leftJoin('p.tva', 't')
+            ->leftJoin('p.user', 'u')
             ->where('p.category = :category')
             ->orderBy('p.id')
             ->setParameter('category', $category);
         return $qb->getQuery()->getResult();
+    }
+
+    public function myFindAllProducts(){
+        $qb = $this->createQueryBuilder('p')
+            ->select('p, i , c, t, u')
+            ->leftJoin('p.image', 'i')
+            ->leftJoin('p.category', 'c')
+            ->leftJoin('p.tva', 't')
+            ->leftJoin('p.user', 'u')
+            ->orderBy('p.id', 'DESC')
+        ;
+
+       // die(dump($qb->getQuery()));
+        return $qb->getQuery()->getResult();
+    }
+
+    public function myFindProductById($product){
+        $qb = $this->createQueryBuilder('p')
+            ->select('p, i , c, t, u')
+            ->leftJoin('p.image', 'i')
+            ->leftJoin('p.category', 'c')
+            ->leftJoin('p.tva', 't')
+            ->leftJoin('p.user', 'u')
+            ->where('p.id = :id')
+            ->setParameter('id', $product)
+            ->orderBy('p.id', 'DESC')
+        ;
+
+        // die(dump($qb->getQuery()));
+        return $qb->getQuery()->getSingleResult();
     }
 }

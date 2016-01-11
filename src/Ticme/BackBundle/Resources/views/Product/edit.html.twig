@@ -11,23 +11,24 @@
     {% endif %}
     <div class="box box-primary">
         <div class="box-header with-border">
-            <h3 class="box-title">Editer une Catégorie</h3>
+            <h3 class="box-title">Editer un Produit</h3>
         </div><!-- /.box-header -->
         {{ form_start(formProduct, {'attr': { novalidate: 'novalidate' ,'role': 'form' }, 'multipart': { form_enctype: true }}) }}
         <div class="box-body">
+
             {#{{ dump(formProduct) }}#}
             {{ form_errors(formProduct) }}
+
+            {{ form_label(formProduct.category) }}
+            <div class="form-group {% if form_errors(formProduct.category) %} has-error {% endif %}">
+                {{ form_errors(formProduct.category) }}
+                {{ form_widget(formProduct.category, { 'attr': {'class': 'form-control'} }) }}
+            </div>
 
             {{ form_label(formProduct.title) }}
             <div class="form-group {% if form_errors(formProduct.title) %} has-error {% endif %}">
                 {{ form_errors(formProduct.title) }}
                 {{ form_widget(formProduct.title, { 'attr': {'class': 'form-control', 'placeholder': 'Titre'} }) }}
-            </div>
-
-            {{ form_label(formProduct.description) }}
-            <div class="form-group {% if form_errors(formProduct.description) %} has-error {% endif %}">
-                {{ form_errors(formProduct.description) }}
-                {{ form_widget(formProduct.description, { 'attr': {'class': 'form-control ckeditor', 'placeholder': 'Description'} }) }}
             </div>
 
             {{ form_label(formProduct.priceHt) }}
@@ -36,10 +37,40 @@
                 {{ form_widget(formProduct.priceHt, { 'attr': {'class': 'form-control', 'placeholder': 'Prix hors taxe'} }) }}
             </div>
 
-            {{ form_label(formProduct.available) }}
+            {{ form_label(formProduct.tva) }}
+            <div class="form-group {% if form_errors(formProduct.tva) %} has-error {% endif %}">
+                {{ form_errors(formProduct.tva) }}
+                {{ form_widget(formProduct.tva, { 'attr': {'class': 'form-control'} }) }}
+            </div>
+
+            {{ form_label(formProduct.description) }}
+            <div class="form-group {% if form_errors(formProduct.description) %} has-error {% endif %}">
+                {{ form_errors(formProduct.description) }}
+                {{ form_widget(formProduct.description, { 'attr': {'class': 'form-control ckeditor', 'placeholder': 'Description'} }) }}
+            </div>
+
+            {{ form_label(formProduct.image) }}
+
+            <div class="form-group {% if form_errors(formProduct.image.name) %} has-error {% endif %}">
+                {{ form_errors(formProduct.image.name) }}
+                {{ form_widget(formProduct.image.name, { 'attr': {'class': 'form-control', 'placeholder': 'Alt'} }) }}
+            </div>
+            <div class="fileinput fileinput-new input-group" data-provides="fileinput">
+                {{ form_errors(formProduct.image) }}
+                <div class="form-control" data-trigger="fileinput"><i class="glyphicon glyphicon-file fileinput-exists"></i> <span class="fileinput-filename"></span></div>
+                <span class="input-group-addon btn btn-default btn-file"><span class="fileinput-new">Select file</span><span class="fileinput-exists">Change</span>
+                    {{ form_widget(formProduct.image.file) }}
+                </span>
+                <a href="#" class="input-group-addon btn btn-default fileinput-exists" data-dismiss="fileinput">Remove</a>
+            </div>
+
             <div class="form-group {% if form_errors(formProduct.available) %} has-error {% endif %}">
                 {{ form_errors(formProduct.available) }}
-                {{ form_widget(formProduct.available, { 'attr': {'class': 'form-control', 'placeholder': 'Disponible'} }) }}
+                <div class="checkbox">
+                    <label>
+                        {{ form_widget(formProduct.available) }} {{ form_label(formProduct.available) }}
+                    </label>
+                </div>
             </div>
 
             <div class="box-footer">

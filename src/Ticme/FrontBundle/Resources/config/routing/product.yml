@@ -9,5 +9,5 @@ ticme_front_product_show:
     path: /show/{slug}-{id}
     defaults: { _controller: TicmeFrontBundle:Product:show }
     requirements:
-      slug: "[a-zA-Z1-9\-_\/]+"
+      slug: "[a-zA-Z0-9-_/]+"
       id: "\d+"

@@ -10,7 +10,10 @@ class DefaultController extends Controller
     public function indexAction(Request $request, $page)
     {
         $em = $this->getDoctrine()->getManager();
-        $allProducts = $em->getRepository('TicmeBackBundle:Product')->findAll();
+        //$allProducts = $em->getRepository('TicmeBackBundle:Product')->findAllWithImage();
+        $allProducts = $em->getRepository('TicmeBackBundle:Product')->myFindAllProducts();
+
+
 
         if (null === $allProducts) {
             throw new NotFoundHttpException("Aucuns produits.");

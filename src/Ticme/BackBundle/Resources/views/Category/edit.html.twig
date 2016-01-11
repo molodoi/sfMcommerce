@@ -28,35 +28,15 @@
                 {{ form_errors(formCategory.description) }}
                 {{ form_widget(formCategory.description, { 'attr': {'class': 'form-control ckeditor', 'placeholder': 'Decription'} }) }}
             </div>
-{#
-            {% if formCategory.image is defined and categorie.image and categorie.image.name %}
-                {{ form_label(formCategory.image) }}
 
-                <div class="form-group {% if form_errors(formCategory.image.name) %} has-error {% endif %}">
-                    {{ form_errors(formCategory.image.name) }}
-                    {{ form_widget(formCategory.image.name, { 'attr': {'class': 'form-control', 'placeholder': categorie.image.name} }) }}
-                </div>
-
-                {{ form_label(formCategory.image) }}
-
-                <div class="form-group {% if form_errors(formCategory.image.file) %} has-error {% endif %}">
-                    {{ form_errors(formCategory.image.file) }}
-                    {{ form_widget(formCategory.image.file, { 'attr': {'class': 'form-control', 'placeholder': categorie.image.file} }) }}
-                </div>
-            {% endif %}#}
-
+            {{ form_label(formCategory.image) }}
+            <div class="form-group {% if form_errors(formCategory.image.name) %} has-error {% endif %}">
+                {{ form_errors(formCategory.image.name) }}
+                {{ form_widget(formCategory.image.name, { 'attr': {'class': 'form-control', 'placeholder': 'Alt'} }) }}
+            </div>
             <div class="fileinput fileinput-new input-group" data-provides="fileinput">
                 {{ form_errors(formCategory.image) }}
-                <div class="form-control" data-trigger="fileinput">
-
-                    <i class="glyphicon glyphicon-file fileinput-exists" style="display: inline;"></i>
-                    <span class="fileinput-filename">
-                        {% if categorie.image.path is defined %}
-                            {{ categorie.image.path }}
-                        {% endif %}
-                    </span>
-
-                </div>
+                <div class="form-control" data-trigger="fileinput"><i class="glyphicon glyphicon-file fileinput-exists"></i> <span class="fileinput-filename"></span></div>
                 <span class="input-group-addon btn btn-default btn-file"><span class="fileinput-new">Select file</span><span class="fileinput-exists">Change</span>
                     {{ form_widget(formCategory.image.file) }}
                 </span>
