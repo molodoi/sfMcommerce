@@ -28,7 +28,7 @@ class ProductRepository extends \Doctrine\ORM\EntityRepository
             ->leftJoin('p.tva', 't')
             ->leftJoin('p.user', 'u')
             ->where('p.category = :category')
-            ->orderBy('p.id')
+            ->orderBy('p.id', 'DESC')
             ->setParameter('category', $category);
         return $qb->getQuery()->getResult();
     }

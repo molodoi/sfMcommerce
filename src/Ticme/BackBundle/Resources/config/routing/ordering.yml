@@ -1,5 +1,9 @@
+ticme_back_facturesPDF:
+    path:     /factures/pdf/{id}
+    defaults: { _controller: "TicmeBackBundle:Ordering:facturesPDF" }
+
 ticme_back_order_active:
-    path: /reactive/{id}
+    path: /active/{id}
     defaults: { _controller: TicmeBackBundle:Ordering:active }
     requirements:
         id: \d+

@@ -9,7 +9,9 @@
                 <tr>
                     <th>Id</th>
                     <th>Reference</th>
-                    <th>Contenu</th>
+                    <th>Facturé à</th>
+                    <th>Prix HT</th>
+                    <th>Prix TTC</th>
                     <th>Validé</th>
                     <th>Daté de création</th>
                     <th class="pull-right">Actions</th>
@@ -21,14 +23,29 @@
                         <tr>
                             <td>{{ ordering.id }}</td>
                             <td>{{ ordering.reference }}</td>
-                            <td>{{ ordering.products }}</td>
-                            <td>{{ ordering.validated }}</td>
-                            <td>{{ ordering.createdAt }}</td>
+                            <td>
+                                {{ ordering.contorder.billing.lastname }} {{ ordering.contorder.billing.name }}
+                            </td>
+                            <td>{{ ordering.contorder.prixHT }} €</td>
+                            <td>{{ ordering.contorder.prixTTC }} €</td>
+                            <td>
+                                {% if ordering.validated != 1 %}
+                                    <i class="fa fa-circle-o fa-stack-1x"  style="color:#c0392b;"></i>
+                                {% else %}
+                                    <i class="fa fa-check-circle-o fa-stack-1x" style="color:#27ae60;"></i>
+                                {% endif %}
+
+                            </td>
+                            <td>{{ ordering.createdAt|date }}</td>
                             <td>
                                     <span class="pull-right">
-                                        <a href="{{ path('ticme_back_order_show', {'id': ordering.id}) }}" class="btn btn-success btn-xs"><i class="fa fa-eye"></i> Voir</a>
-                                        <a href="{{ path('ticme_back_order_edit', {'id': ordering.id}) }}" class="btn btn-info btn-xs"><i class="fa fa-edit"></i> Editer</a>
-                                        <a href="{{ path('ticme_back_order_delete', {'id': ordering.id}) }}" class="btn btn-danger btn-xs"><i class="fa fa-remove"></i> Supprimer</a>
+                                        <a href="{{ path('ticme_back_order_show', {'id': ordering.id}) }}" class="btn btn-success btn-xs"><i class="fa fa-eye"> Voir</i> </a>
+                                        {% if ordering.validated != 1 %}
+                                            <a href="{{ path('ticme_back_order_active', {'id': ordering.id}) }}" class="btn btn-success btn-xs"><i class="fa fa-check"> Valider &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </i></a>
+                                        {% else %}
+                                            <a href="#" class="btn btn-primary btn-xs disabled"><i class="fa fa-check"> Commande</i> </a>
+                                        {% endif %}
+                                        <a href="{{ path('ticme_back_facturesPDF', { 'id' : ordering.id }) }}" target="_blank"><i class="fa fa-file-pdf-o"></i></a>
                                     </span>
                             </td>
                         </tr>

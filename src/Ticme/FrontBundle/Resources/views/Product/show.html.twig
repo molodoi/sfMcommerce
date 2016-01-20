@@ -19,8 +19,10 @@
             <h1 class="page-header">
                 {{ product.title }} - {{ product.priceHt|tva(product.tva.multi) }} €
             </h1>
-            {% if product.image.path  is not null %}
-                <img src="{{ asset('uploads/categories/' ~ product.image.path) }}" width="750" alt="{{ product.image.name }}" class="responsive pull-right">
+            {% if product.image is not null %}
+                {% if product.image.path  is not null %}
+                    <img src="{{ asset('uploads/categories/' ~ product.image.path) }}" width="750" alt="{{ product.image.name }}" class="responsive pull-right">
+                {% endif %}
             {% else %}
                 <img src="http://placehold.it/750x500" alt="{{ product.title }}" class="pull-right">
             {% endif %}

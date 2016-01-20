@@ -38,13 +38,11 @@ class BillingController extends Controller
 
         //on stocke la vue à convertir en PDF, en n'oubliant pas les paramètres twig si la vue comporte des données dynamiques
         $content = $this->container->get('setNewFacture')->facture($facture)->Output('facture_'.$facture->getReference().'.pdf', true);
+
         $response = new Response();
         $response->setContent($content);
         $response->headers->set('Content-Type', 'application/force-download');
         $response->headers->set('Content-disposition', 'filename=facture_'.$facture->getReference().'.pdf');
-
-
-
         return $response;
     }
 }

@@ -1,0 +1,42 @@
+client:
+    path:     /
+    defaults: { _controller: "TicmeUserBundle:Client:index" }
+
+client_address:
+    path:     /{id}/address
+    defaults: { _controller: "TicmeUserBundle:Client:index" }
+
+client_invoice:
+    path:     /{id}/invoice
+    defaults: { _controller: "TicmeUserBundle:Client:index" }
+
+client_new:
+    path:     /new
+    defaults: { _controller: "TicmeUserBundle:Client:new" }
+
+client_show:
+    path:     /{id}/show
+    defaults: { _controller: "TicmeUserBundle:Client:show" }
+
+client__new:
+    path:     /new
+    defaults: { _controller: "TicmeUserBundle:Client:new" }
+
+client_create:
+    path:     /create
+    defaults: { _controller: "TicmeUserBundle:Client:create" }
+    methods:  POST
+
+client_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "TicmeUserBundle:Client:edit" }
+
+client_update:
+    path:     /{id}/update
+    defaults: { _controller: "TicmeUserBundle:Client:update" }
+    methods:  [POST, PUT]
+
+client_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "TicmeUserBundle:Client:delete" }
+    methods:  [POST, DELETE]

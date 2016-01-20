@@ -23,7 +23,7 @@ class UserController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $entities = $em->getRepository('TicmeUserBundle:User')->findAll();
+        $entities = $em->getRepository('TicmeUserBundle:User')->findByRole('ROLE_SUPER_ADMIN');
 
         return $this->render('TicmeUserBundle:User:index.html.twig', array(
             'entities' => $entities,

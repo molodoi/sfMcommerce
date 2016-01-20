@@ -22,8 +22,8 @@ class LoadAliceFixtures extends AbstractFixture implements OrderedFixtureInterfa
     {
         $user = new User();
 
-        $user->setUsername('matt');
-        $user->setUsernameCanonical('matt');
+        $user->setUsername('admin');
+        $user->setUsernameCanonical('admin');
         $user->setUsername('admin');
         $user->setEmail('admin@admin.fr');
         $user->setEnabled(1);

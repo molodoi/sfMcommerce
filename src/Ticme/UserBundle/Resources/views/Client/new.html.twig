@@ -13,7 +13,7 @@
     {% endif %}
     <div class="box box-primary">
         <div class="box-header with-border">
-            <h3 class="box-title">Créer un Utilisateur</h3>
+            <h3 class="box-title">Créer un Client</h3>
         </div><!-- /.box-header -->
         {{ form_start(form, {'attr': { novalidate: 'novalidate' ,'role': 'form' }, 'multipart': { form_enctype: true }}) }}
         <div class="box-body">
@@ -44,15 +44,9 @@
                 {{ form_widget(form.password.second, { 'attr': {'class': 'form-control', 'placeholder': 'Vérification mot de passe'} }) }}
             </div>
 
-            {{ form_label(form.roles) }}
-            <div class="form-group {% if form_errors(form.roles) %} has-error {% endif %}">
-                {{ form_errors(form.roles) }}
-                {{ form_widget(form.roles, { 'attr': {'class': 'form-control', 'placeholder': 'Valide'} }) }}
-            </div>
-
             <div class="box-footer">
                 {{ form_widget(form.submit, { 'label' : 'Ajouter', 'attr': {'class': 'btn btn-primary', 'data-loading-text': 'Mettre à jour'} }) }}
-                <a href="{{ path('user') }}" class="btn btn-default"><i class="fa fa-mail-reply"></i> Revenir à la liste des utilisateur</a>
+                <a href="{{ path('client') }}" class="btn btn-default"><i class="fa fa-mail-reply"></i> Revenir à la liste des clients</a>
             </div>
             {{ form_widget(form._token) }}
         </div>

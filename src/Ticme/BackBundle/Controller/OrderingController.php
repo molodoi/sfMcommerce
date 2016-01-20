@@ -6,9 +6,21 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Ticme\BackBundle\Entity\Ordering;
 use Ticme\BackBundle\Form\OrderingType;
+use Symfony\Component\HttpFoundation\Response;
 
 class OrderingController extends Controller
 {
+    public function activeAction($id){
+
+        $em = $this->getDoctrine()->getManager();
+        $order = $em->getRepository('TicmeBackBundle:Ordering')->find($id);
+
+        $order->setValidated(true);
+        $order->setUpdatedAt(new \DateTime('NOW'));
+        $em->flush();
+        return $this->redirectToRoute('ticme_back_order_list');
+    }
+
     public function indexAction(Request $request, $page)
     {
         $repository = $this->getDoctrine()
@@ -144,6 +156,36 @@ class OrderingController extends Controller
         $session->getFlashBag()->add('info', $reference. ' supprimé');
 
         return $this->redirectToRoute('ticme_back_ordering_list');
+    }
+
+
+    public function facturesPDFAction($id)
+    {
+        $em = $this->getDoctrine()->getManager();
+
+        $facture = $em->getRepository('TicmeBackBundle:Ordering')->findOneBy(
+            array(
+                'validated' => 1,
+                'id' => $id,
+            )
+
+        );
+
+        if(!$facture){
+            $this->get('session')->getFlashBag()->add('error', 'Une erreur est survenue');
+            return $this->redirect($this->generateUrl('ticme_back_order_list'));
+        }
+
+        //on stocke la vue à convertir en PDF, en n'oubliant pas les paramètres twig si la vue comporte des données dynamiques
+        $content = $this->container->get('setNewFacture')->facture($facture)->Output('facture_'.$facture->getReference().'.pdf', true);
+        $response = new Response();
+        $response->setContent($content);
+        $response->headers->set('Content-Type', 'application/force-download');
+        $response->headers->set('Content-disposition', 'filename=facture_'.$facture->getReference().'.pdf');
+
+
+
+        return $response;
     }
 
 }

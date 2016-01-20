@@ -44,7 +44,7 @@ class User extends BaseUser
         parent::__construct();
         $this->products = new ArrayCollection();
         $this->orders = new ArrayCollection();
-        $this->$address = new ArrayCollection();
+        $this->address = new ArrayCollection();
     }
 
     /**

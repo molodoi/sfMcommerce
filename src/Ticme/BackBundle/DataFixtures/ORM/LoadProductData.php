@@ -21,7 +21,6 @@ class LoadProductData extends AbstractFixture implements OrderedFixtureInterface
             $product->setTitle('Produit'.$i);
             $product->setDescription('Description du produit'.$i);
             $product->setPriceHt('5');
-            $product->setTva();
             $product->setCategory($this->getReference('cat'));
             $product->setTva($this->getReference('tva'));
             $product->setUser($this->getReference('user'));

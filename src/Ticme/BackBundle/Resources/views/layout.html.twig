@@ -52,8 +52,16 @@
             <li class="dropdown">
                 <a href="#"><span class="fa-stack fa-lg pull-left"><i class="fa fa-cart-plus fa-stack-1x "></i></span>Commmandes</a>
                 <ul class="nav-pills nav-stacked" style="list-style-type:none;">
-                    <li><a href="{{ path('ticme_back_category_list') }}">Toutes les commandes</a></li>
+                    <li><a href="{{ path('ticme_back_order_list') }}">Toutes les commandes</a></li>
                     <li><a href="{{ path('ticme_back_category_create') }}">Créer une commande</a></li>
+                </ul>
+            </li>
+
+            <li class="dropdown">
+                <a href="#"><span class="fa-stack fa-lg pull-left"><i class="fa fa-users fa-stack-1x "></i></span>Clients</a>
+                <ul class="nav-pills nav-stacked" style="list-style-type:none;">
+                    <li><a href="{{ path('client') }}">Toutes les clients</a></li>
+                    <li><a href="{{ path('client_new') }}">Créer un clients</a></li>
                 </ul>
             </li>
 
@@ -61,30 +69,18 @@
                 <a href="#"><span class="fa-stack fa-lg pull-left"><i class="fa fa-user fa-stack-1x "></i></span>Utilisateurs</a>
                 <ul class="nav-pills nav-stacked" style="list-style-type:none;">
                     <li><a href="{{ path('user') }}">Toutes les utilisateurs</a></li>
-                    <li><a href="{{ path('user_create') }}">Créer un utilisateurs</a></li>
+                    <li><a href="{{ path('user_new') }}">Créer un utilisateurs</a></li>
                 </ul>
             </li>
+
+
+            <li>
+                <a href="{{ path('ticme_front_homepage') }}" target="_blank"><span class="fa-stack fa-lg pull-left"><i class="fa fa-bullseye fa-stack-1x "></i></span>Voir le frontend/vitrine</a>
+            </li>
+
             <li class="dropdown">
                 <a href="{{ path('fos_user_security_logout') }}"><span class="fa-stack fa-lg pull-left"><i class="fa fa-toggle-off fa-stack-1x "></i></span>{{ 'layout.logout'|trans({}, 'FOSUserBundle') }}</a>
                 <a href="#"></a>
-            </li>
-            <li>
-                <a href="#"><span class="fa-stack fa-lg pull-left"><i class="fa fa-cloud-download fa-stack-1x "></i></span>Overview</a>
-            </li>
-            <li>
-                <a href="#"> <span class="fa-stack fa-lg pull-left"><i class="fa fa-cart-plus fa-stack-1x "></i></span>Events</a>
-            </li>
-            <li>
-                <a href="#"><span class="fa-stack fa-lg pull-left"><i class="fa fa-youtube-play fa-stack-1x "></i></span>About</a>
-            </li>
-            <li>
-                <a href="#"><span class="fa-stack fa-lg pull-left"><i class="fa fa-wrench fa-stack-1x "></i></span>Services</a>
-            </li>
-            <li>
-                <a href="#"><span class="fa-stack fa-lg pull-left"><i class="fa fa-server fa-stack-1x "></i></span>Contact</a>
-            </li>
-            <li>
-                <a href="{{ path('ticme_front_homepage') }}" target="_blank"><span class="fa-stack fa-lg pull-left"><i class="fa fa-bullseye fa-stack-1x "></i></span>Voir le frontend/vitrine</a>
             </li>
         </ul>
     </div><!-- /#sidebar-wrapper -->
