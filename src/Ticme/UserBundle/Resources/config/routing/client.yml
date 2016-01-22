@@ -4,11 +4,15 @@ client:
 
 client_address:
     path:     /{id}/address
-    defaults: { _controller: "TicmeUserBundle:Client:index" }
+    defaults: { _controller: "TicmeUserBundle:Client:showAddressOrInvoice" }
 
 client_invoice:
     path:     /{id}/invoice
-    defaults: { _controller: "TicmeUserBundle:Client:index" }
+    defaults: { _controller: "TicmeUserBundle:Client:showAddressOrInvoice" }
+
+client_facturesPDF:
+    path:     /factures/pdf/{id}
+    defaults: { _controller: "TicmeUserBundle:Client:facturesPDF" }
 
 client_new:
     path:     /new

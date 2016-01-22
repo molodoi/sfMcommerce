@@ -1,0 +1,42 @@
+{% extends 'TicmeFrontBundle::layout.html.twig' %}
+
+{% block content %}
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4">
+                {{ render(controller('TicmeFrontBundle:Category:categorieMenu')) }}
+            </div>
+            <div class="col-md-8">
+
+                {% for flashMessage in app.session.flashbag.get('success') %}
+                    <div class="alert alert-success">
+                        {{ flashMessage }}
+                    </div>
+                {% endfor %}
+                {% for flashMessage in app.session.flashbag.get('error') %}
+                    <div class="alert alert-errors">
+                        {{ flashMessage }}
+                    </div>
+                {% endfor %}
+
+                <h2>Mes Adresses</h2>
+                <hr />
+                <div class="col-md-12">
+                {% for adresse in user.address %}
+
+                        <div class="col-md-4">
+                            <h4>Adresse {{ loop.index }} :</h4>
+                            {{ adresse.lastname }} {{ adresse.name }}
+                            <br>{{ adresse.address }}, <br />{{ adresse.zipcode }} {{ adresse.city }} - {{ adresse.country }}
+                            <br /><br />
+                        </div>
+
+                {% endfor %}
+                </div>
+                    <a href="{{ path('ticme_front_cart_delivery') }}" class="btn btn-default"><i class="fa fa-mail-reply"></i> Ajouter une adresse</a>
+
+            </div>
+
+        </div>
+    </div>
+{% endblock %}

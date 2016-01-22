@@ -20,7 +20,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="{{ path('ticme_front_homepage') }}">Start Bootstrap</a>
+                <a class="navbar-brand" href="{{ path('ticme_front_homepage') }}">Mcommerce</a>
             </div>
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -56,6 +56,12 @@
                             {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
                                 <li>
                                     <a href="{{ path('fos_user_profile_edit') }}">Editer votre profil</a>
+                                </li>
+                                <li>
+                                    <a href="{{ path('ticme_front_factures') }}">Editer vos commandes</a>
+                                </li>
+                                <li>
+                                    <a href="{{ path('ticme_front_address') }}">Editer vos adresses</a>
                                 </li>
                                 <li>
                                     <a href="{{ path('fos_user_security_logout') }}">{{ 'layout.logout'|trans({}, 'FOSUserBundle') }}</a>

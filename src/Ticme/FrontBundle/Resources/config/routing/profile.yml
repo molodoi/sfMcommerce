@@ -1,0 +1,11 @@
+ticme_front_address:
+    path:     /address
+    defaults: { _controller: "TicmeFrontBundle:Address:showCurrentUserAddress" }
+
+ticme_front_factures:
+    path:     /factures
+    defaults: { _controller: "TicmeUserBundle:Billing:factures" }
+
+ticme_front_facturesPDF:
+    path:     /factures/pdf/{id}
+    defaults: { _controller: "TicmeUserBundle:Billing:facturesPDF" }

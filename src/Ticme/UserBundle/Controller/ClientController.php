@@ -2,11 +2,11 @@
 
 namespace Ticme\UserBundle\Controller;
 
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 use Ticme\UserBundle\Entity\User;
-use Ticme\UserBundle\Form\UserType;
 use Ticme\UserBundle\Form\ClientType;
 
 /**
@@ -30,6 +30,60 @@ class ClientController extends Controller
             'entities' => $entities,
         ));
     }
+
+    /**
+     * Finds and displays a User entity.
+     *
+     */
+    public function showAddressOrInvoiceAction($id)
+    {
+        $em = $this->getDoctrine()->getManager();
+
+        $entity = $em->getRepository('TicmeUserBundle:User')->find($id);
+
+        if (!$entity) {
+            throw $this->createNotFoundException('Unable to find User entity.');
+        }
+
+        $route = $this->container->get('request')->get('_route');
+
+        if ($route == 'client_address') {
+            return $this->render('TicmeUserBundle:Client:address.html.twig', array('entity' => $entity));
+        }else if ($route == 'client_invoice') {
+            return $this->render('TicmeUserBundle:Client:invoice.html.twig', array('entity' => $entity));
+        }else{
+            throw $this->createNotFoundException('La vue n\'existe pas.');
+        }
+    }
+
+    public function facturesPDFAction($id)
+    {
+        $em = $this->getDoctrine()->getManager();
+
+        $facture = $em->getRepository('TicmeBackBundle:Ordering')->findOneBy(
+            array(
+                'validated' => 1,
+                'id' => $id,
+            )
+
+        );
+
+        if(!$facture){
+            $this->get('session')->getFlashBag()->add('error', 'Une erreur est survenue');
+            return $this->redirect($this->generateUrl('client'));
+        }
+
+        //on stocke la vue à convertir en PDF, en n'oubliant pas les paramètres twig si la vue comporte des données dynamiques
+        $content = $this->container->get('setNewFacture')->facture($facture)->Output('facture_'.$facture->getReference().'.pdf', true);
+
+        $response = new Response();
+        $response->setContent($content);
+        $response->headers->set('Content-Type', 'application/force-download');
+        $response->headers->set('Content-disposition', 'filename=facture_'.$facture->getReference().'.pdf');
+        return $response;
+    }
+
+
     /**
      * Creates a new User entity.
      *

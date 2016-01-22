@@ -136,7 +136,7 @@ class OrderingController extends BaseController
             throw $this->createNotFoundException('La commande n\'existe pas');
         }
 
-        $order->setValidated(false);
+        $order->setValidated(true);
         $order->setReference($this->container->get('setNewReference')->reference()); //Service
         //$order->setReference(1); //Service
         $em->flush();
