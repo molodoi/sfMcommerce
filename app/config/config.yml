@@ -73,11 +73,12 @@ doctrine:
 
 # Swiftmailer Configuration
 swiftmailer:
-    transport: "%mailer_transport%"
-    host:      "%mailer_host%"
-    username:  "%mailer_user%"
-    password:  "%mailer_password%"
-    spool:     { type: memory }
+    transport:  "%mailer_transport%"
+    encryption: "%mailer_encryption%"
+    host:       "%mailer_host%"
+    username:   "%mailer_user%"
+    password:   "%mailer_password%"
+    spool:      { type: memory }
 
 knp_paginator:
     page_range: 5                      # default page range used in pagination control
@@ -113,3 +114,20 @@ white_october_breadcrumbs:
     locale:             ~ # defaults to null, so the default locale is used
     translation_domain: ~ # defaults to null, so the default domain is used
     viewTemplate:       'WhiteOctoberBreadcrumbsBundle::breadcrumbs.html.twig'
+
+liip_imagine:
+    resolvers:
+       default:
+          web_path:
+            web_root: %kernel.root_dir%/../web
+            cache_prefix: /media/cache/
+    filter_sets:
+        cache: ~
+        productThumb:
+            quality: 80
+            filters:
+                thumbnail: { size: [320, 150], mode: inset }
+        product:
+            quality: 80
+            filters:
+                thumbnail: { size: [800, 500], mode: inset }

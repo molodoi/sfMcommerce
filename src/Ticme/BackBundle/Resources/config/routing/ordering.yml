@@ -1,6 +1,6 @@
-ticme_back_facturesPDF:
-    path:     /factures/pdf/{id}
-    defaults: { _controller: "TicmeBackBundle:Ordering:facturesPDF" }
+ticme_back_invoicePDF:
+    path:     /invoice/pdf/{id}
+    defaults: { _controller: "TicmeBackBundle:Ordering:invoicePDF" }
 
 ticme_back_order_active:
     path: /active/{id}

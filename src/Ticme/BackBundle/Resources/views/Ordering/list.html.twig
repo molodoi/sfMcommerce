@@ -45,7 +45,7 @@
                                         {% else %}
                                             <a href="#" class="btn btn-primary btn-xs disabled"><i class="fa fa-check"> Commande</i> </a>
                                         {% endif %}
-                                        <a href="{{ path('ticme_back_facturesPDF', { 'id' : ordering.id }) }}" target="_blank"><i class="fa fa-file-pdf-o"></i></a>
+                                        <a href="{{ path('ticme_back_invoicePDF', { 'id' : ordering.id }) }}" target="_blank"><i class="fa fa-file-pdf-o"></i></a>
                                     </span>
                             </td>
                         </tr>

@@ -31,17 +31,17 @@
                             </tr>
                         </thead>
                         <tbody>
-                        {% if factures|length == 0 %}
+                        {% if invoices|length == 0 %}
                             <tr>
                                 <td colspan="4" class="text-center">Ancune facture actuellement.</td>
                             </tr>
                         {% endif %}
-                        {% for facture in factures %}
+                        {% for invoice in invoices %}
                             <tr>
-                                <td><strong>Ref: {{ facture.reference }}</strong></td>
-                                <td>{{ facture.createdAt|date('d/m/Y') }}</td>
-                                <td>{{ facture.contorder.prixTTC }} €</td>
-                                <td><a href="{{ path('ticme_front_facturesPDF', { 'id' : facture.id }) }}" target="_blank" title="Générer la facture Pdf"><i class="fa fa-file-pdf-o"></i></a></td>
+                                <td><strong>Ref: {{ invoice.reference }}</strong></td>
+                                <td>{{ invoice.createdAt|date('d/m/Y') }}</td>
+                                <td>{{ invoice.contorder.prixTTC }} €</td>
+                                <td><a href="{{ path('ticme_front_invoicePDF', { 'id' : invoice.id }) }}" target="_blank" title="Générer la facture Pdf"><i class="fa fa-file-pdf-o"></i></a></td>
                             </tr>
                         {% endfor %}
                         </tbody>

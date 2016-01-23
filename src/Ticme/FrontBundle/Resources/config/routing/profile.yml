@@ -2,10 +2,10 @@ ticme_front_address:
     path:     /address
     defaults: { _controller: "TicmeFrontBundle:Address:showCurrentUserAddress" }
 
-ticme_front_factures:
-    path:     /factures
-    defaults: { _controller: "TicmeUserBundle:Billing:factures" }
+ticme_front_invoices:
+    path:     /invoices
+    defaults: { _controller: "TicmeUserBundle:Invoice:invoices" }
 
-ticme_front_facturesPDF:
-    path:     /factures/pdf/{id}
-    defaults: { _controller: "TicmeUserBundle:Billing:facturesPDF" }
+ticme_front_invoicePDF:
+    path:     /invoice/pdf/{id}
+    defaults: { _controller: "TicmeUserBundle:Invoice:invoicePDF" }

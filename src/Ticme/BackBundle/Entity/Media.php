@@ -66,7 +66,7 @@ class Media
      *
      * @ORM\Column(name="created_at", type="datetime", nullable=false)
      */
-    protected $createdAt;
+    private $createdAt;
 
     /**
      * updated Time/Date
@@ -75,7 +75,7 @@ class Media
      *
      * @ORM\Column(name="updated_at", type="datetime", nullable=false)
      */
-    protected $updatedAt;
+    private $updatedAt;
 
     public function getId()
     {
@@ -204,7 +204,7 @@ class Media
     protected function getUploadDir()
     {
         // on se débarrasse de « __DIR__ » afin de ne pas avoir de problème lorsqu'on affiche le document/image dans la vue.
-        return 'uploads/categories';
+        return 'uploads/img';
     }
 
     /**

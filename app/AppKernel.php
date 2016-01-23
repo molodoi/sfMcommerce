@@ -20,6 +20,7 @@ class AppKernel extends Kernel
             new Knp\Bundle\PaginatorBundle\KnpPaginatorBundle(),
             new FOS\UserBundle\FOSUserBundle(),
             new WhiteOctober\BreadcrumbsBundle\WhiteOctoberBreadcrumbsBundle(),
+            new Liip\ImagineBundle\LiipImagineBundle(),
             new Ticme\BackBundle\TicmeBackBundle(),
             new Ticme\UserBundle\TicmeUserBundle(),
             new Ticme\FrontBundle\TicmeFrontBundle(),

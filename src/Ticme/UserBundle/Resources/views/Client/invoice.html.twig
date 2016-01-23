@@ -39,7 +39,7 @@
                     <td>{{ order.createdAt|date }}</td>
                     <td>
                         {% if order.validated == true %}
-                            <a href="{{ path('client_facturesPDF', { 'id' : order.id }) }}" target="_blank"><i class="fa fa-file-pdf-o"></i></a>
+                            <a href="{{ path('client_invoicePDF', { 'id' : order.id }) }}" target="_blank"><i class="fa fa-file-pdf-o"></i></a>
                         {% else %}
                             <i class="fa fa-file-pdf-o disabled"></i>
                         {% endif %}

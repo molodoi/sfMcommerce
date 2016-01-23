@@ -14,7 +14,7 @@ class OrderingController extends BaseController
      * @param Request $request
      * @return array $order
      */
-    public function facture(Request $request)
+    public function invoice(Request $request)
     {
         $em = $this->getDoctrine()->getManager();
         $generator = $this->container->get('security.secure_random');
@@ -111,7 +111,7 @@ class OrderingController extends BaseController
         $order->setUser($this->container->get('security.context')->getToken()->getUser());
         $order->setValidated(0);
         $order->setReference(0);
-        $order->setContorder($this->facture($request));
+        $order->setContorder($this->invoice($request));
 
         //Si la session commande n'existe pas alors on crée la session et on persist pour créer un nouvel enregistrement en bdd
         if (!$session->has('order')) {
@@ -153,7 +153,7 @@ class OrderingController extends BaseController
             ->setTo($order->getUser()->getEmailCanonical())
             ->setCharset('utf-8')
             ->setContentType('text/html')
-            ->setBody($this->renderView('TicmeFrontBundle:Mail:validationCommande.html.twig',array('user' => $order->getUser())));
+            ->setBody($this->renderView('TicmeFrontBundle:Mail:validationOrder.html.twig',array('user' => $order->getUser())));
 
         $this->get('mailer')->send($message);
 

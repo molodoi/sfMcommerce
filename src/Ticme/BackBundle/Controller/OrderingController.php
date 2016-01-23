@@ -159,11 +159,11 @@ class OrderingController extends Controller
     }
 
 
-    public function facturesPDFAction($id)
+    public function invoicesPDFAction($id)
     {
         $em = $this->getDoctrine()->getManager();
 
-        $facture = $em->getRepository('TicmeBackBundle:Ordering')->findOneBy(
+        $order = $em->getRepository('TicmeBackBundle:Ordering')->findOneBy(
             array(
                 'validated' => 1,
                 'id' => $id,
@@ -171,19 +171,17 @@ class OrderingController extends Controller
 
         );
 
-        if(!$facture){
+        if(!$order){
             $this->get('session')->getFlashBag()->add('error', 'Une erreur est survenue');
             return $this->redirect($this->generateUrl('ticme_back_order_list'));
         }
 
         //on stocke la vue à convertir en PDF, en n'oubliant pas les paramètres twig si la vue comporte des données dynamiques
-        $content = $this->container->get('setNewFacture')->facture($facture)->Output('facture_'.$facture->getReference().'.pdf', true);
+        $content = $this->container->get('setNewInvoice')->invoice($order)->Output('facture_'.$order->getReference().'.pdf', true);
         $response = new Response();
         $response->setContent($content);
         $response->headers->set('Content-Type', 'application/force-download');
-        $response->headers->set('Content-disposition', 'filename=facture_'.$facture->getReference().'.pdf');
-
-
+        $response->headers->set('Content-disposition', 'filename=facture_'.$order->getReference().'.pdf');
 
         return $response;
     }

@@ -21,22 +21,23 @@
 
                 <h2>Mes Adresses</h2>
                 <hr />
-                <div class="col-md-12">
+                <div class="row">
                 {% for adresse in user.address %}
-
-                        <div class="col-md-4">
-                            <h4>Adresse {{ loop.index }} :</h4>
-                            {{ adresse.lastname }} {{ adresse.name }}
-                            <br>{{ adresse.address }}, <br />{{ adresse.zipcode }} {{ adresse.city }} - {{ adresse.country }}
-                            <br /><br />
+                    <div class="col-md-4">
+                        <div class="panel panel-default">
+                            <div class="panel-body">
+                                <h4>Adresse {{ loop.index }} :</h4>
+                                {{ adresse.lastname }} {{ adresse.name }}
+                                <br>{{ adresse.address }}, <br />{{ adresse.zipcode }} {{ adresse.city }} - {{ adresse.country }}
+                                <br />
+                                <br />
+                            </div>
                         </div>
-
+                    </div>
                 {% endfor %}
                 </div>
-                    <a href="{{ path('ticme_front_cart_delivery') }}" class="btn btn-default"><i class="fa fa-mail-reply"></i> Ajouter une adresse</a>
-
+                <a href="{{ path('ticme_front_cart_delivery') }}" class="btn btn-default"><i class="fa fa-mail-reply"></i> Ajouter une adresse</a>
             </div>
-
         </div>
     </div>
 {% endblock %}

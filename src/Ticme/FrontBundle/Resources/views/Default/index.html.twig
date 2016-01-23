@@ -44,10 +44,14 @@
                 <div class="thumbnail">
                     {% if product.image is not null %}
                         {% if product.image.path  is not null %}
-                            <img src="{{ asset('uploads/categories/' ~ product.image.path) }}" alt="{{ product.image.name }}">
+                            <a href="{{ path('ticme_front_product_show', {'slug': product.slug, 'id': product.id}) }}">
+                                <img src="{{ asset( product.image.path | imagine_filter('productThumb')) }}" alt="{{ product.image.name }}">
+                            </a>
                         {% endif %}
                     {% else %}
-                        <img src="http://placehold.it/320x150" alt="">
+                        <a href="{{ path('ticme_front_product_show', {'slug': product.slug, 'id': product.id}) }}">
+                            <img src="http://placehold.it/320x150" alt="{{ product.title }}">
+                        </a>
                     {% endif %}
                     <div class="caption">
                         <h4 class="pull-right">{{ product.priceHt|tva(product.tva.multi) }} €</h4>

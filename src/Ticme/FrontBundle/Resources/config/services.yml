@@ -1,6 +1,6 @@
 services:
-    setNewFacture:
-        class: Ticme\FrontBundle\Services\GetFacture
+    setNewInvoice:
+        class: Ticme\FrontBundle\Services\GetInvoice
         arguments: [@service_container]
 
     setNewReference:

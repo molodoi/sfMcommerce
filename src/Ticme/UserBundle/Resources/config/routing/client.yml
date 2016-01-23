@@ -10,9 +10,9 @@ client_invoice:
     path:     /{id}/invoice
     defaults: { _controller: "TicmeUserBundle:Client:showAddressOrInvoice" }
 
-client_facturesPDF:
-    path:     /factures/pdf/{id}
-    defaults: { _controller: "TicmeUserBundle:Client:facturesPDF" }
+client_invoicePDF:
+    path:     /invoice/pdf/{id}
+    defaults: { _controller: "TicmeUserBundle:Client:invoicePDF" }
 
 client_new:
     path:     /new

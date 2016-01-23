@@ -10,7 +10,7 @@ namespace Ticme\BackBundle\Repository;
  */
 class OrderingRepository extends \Doctrine\ORM\EntityRepository
 {
-    public function byFacture($user){
+    public function byInvoice($user){
         $qb = $this->createQueryBuilder('o')
             ->select('o')
             ->where('o.user = :user')

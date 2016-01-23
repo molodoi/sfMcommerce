@@ -36,7 +36,7 @@
                         <td>{{ ordering.createdAt|date }}</td>
                         <td>
                             <span class="pull-right">
-                                <td><a href="{{ path('ticme_back_facturesPDF', { 'id' : ordering.id }) }}" target="_blank"><i class="fa fa-file-pdf-o"></i></a></td>
+                                <td><a href="{{ path('ticme_back_invoicePDF', { 'id' : ordering.id }) }}" target="_blank"><i class="fa fa-file-pdf-o"></i></a></td>
                             </span>
                         </td>
                     {% endif %}
