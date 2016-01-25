@@ -22,7 +22,7 @@
                 </h1>
                 {% if product.image is not null %}
                     {% if product.image.path  is not null %}
-                        <img src="{{ asset('uploads/img/' ~ product.image.path) }}" alt="{{ product.image.name }}" class="responsive pull-right">
+                        <img src="{{ asset( 'uploads/img/thumb-800-500-'~product.image.path) }}" alt="{{ product.image.name }}">
                     {% endif %}
                 {% else %}
                     <img src="http://placehold.it/800x500" alt="{{ product.title }}" class="pull-right">

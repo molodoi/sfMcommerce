@@ -18,9 +18,12 @@ class MediaType extends AbstractType
     {
         $builder
             ->add('file', 'file', array('required' => false ))
+            /*->add('file', 'file', array(
+                'multiple' => true,
+                'data_class' => null,
+            ))*/
             ->add('name')
         ;
-        //Le bouton submit est à ajouter de préférence en static dans les vues
     }
 
     /**

@@ -13,7 +13,7 @@ class GetInvoice
 
     public function invoice($invoice)
     {
-        $html = $this->container->get('templating')->render('TicmeFrontBundle:Order:invoicePDF.html.twig', array('facture' => $invoice));
+        $html = $this->container->get('templating')->render('TicmeFrontBundle:Order:invoicePDF.html.twig', array('invoice' => $invoice));
         $html2pdf = new \Html2Pdf_Html2Pdf('P','A4','fr');
         $html2pdf->pdf->SetAuthor('Ticme');
         $html2pdf->pdf->SetTitle('Facture '.$invoice->getReference());

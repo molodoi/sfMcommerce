@@ -204,8 +204,13 @@ class Media
     protected function getUploadDir()
     {
         // on se débarrasse de « __DIR__ » afin de ne pas avoir de problème lorsqu'on affiche le document/image dans la vue.
-        return 'uploads/img';
+        return 'uploads/img/';
     }
+
+    protected $thumbnails = array(
+        'thumb-320-150-' => array(320,150),
+        'thumb-800-500-' => array(800,500),
+    );
 
     /**
      * @ORM\PrePersist()
@@ -231,9 +236,30 @@ class Media
             return;
         }
 
+        $extension = $this->file->guessExtension();
+
         // S'il y a une erreur lors du déplacement du fichier, une exception va automatiquement être lancée par la méthode move().
         //Cela va empêcher proprement l'entité d'être persistée dans la base de données si erreur il y a
         $this->file->move($this->getUploadRootDir(), $this->path);
+
+        // Creation des thumbnails
+        $imagine = new \Imagine\Gd\Imagine();
+        $imagineOpen = $imagine->open($this->getUploadRootDir().$this->path);
+        //REDIMENSIONNE ET GARDE LES PROPORTIONS
+        $mode1    = \Imagine\Image\ImageInterface::THUMBNAIL_INSET;
+        //REDIMENSIONNE ET CROP
+        $mode2    = \Imagine\Image\ImageInterface::THUMBNAIL_OUTBOUND;
+
+        foreach ($this->thumbnails as $key => $value ){
+            $imagineOpen->thumbnail(
+                new \Imagine\Image\Box(
+                    $value[0],
+                    $value[1]
+                ),
+                $mode2
+            )
+                ->save($this->getUploadRootDir().$key.$this->path);
+        }
 
         if(empty($this->name)){
             $this->setName( $this->file->getClientOriginalName() );
@@ -258,6 +284,14 @@ class Media
     {
         if(file_exists($this->path)){
             unlink($this->path);
+        }
+        foreach($this->thumbnails as $nameThumb => $size)
+        {
+            if (file_exists($this->getUploadRootDir().$nameThumb.$this->path))
+            {
+                //unlink($this->getUploadRootDir().$nameThumb.$this->path);
+                unlink($this->getUploadRootDir().$nameThumb.$this->path);
+            }
         }
     }
 

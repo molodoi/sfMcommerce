@@ -45,7 +45,7 @@
                     {% if product.image is not null %}
                         {% if product.image.path  is not null %}
                             <a href="{{ path('ticme_front_product_show', {'slug': product.slug, 'id': product.id}) }}">
-                                <img src="{{ asset( product.image.path | imagine_filter('productThumb')) }}" alt="{{ product.image.name }}">
+                                <img src="{{ asset( 'uploads/img/thumb-320-150-'~product.image.path) }}" alt="{{ product.image.name }}">
                             </a>
                         {% endif %}
                     {% else %}

@@ -20,14 +20,14 @@
     </tr>
     <tr>
         <td class="color">[[page_nb]]</td>
-        <td class="color">{{ facture.createdAt|date('d-m-Y') }}</td>
-        <td class="color">{{ facture.reference }}</td>
+        <td class="color">{{ invoice.createdAt|date('d-m-Y') }}</td>
+        <td class="color">{{ invoice.reference }}</td>
     </tr>
 </table>
 <ul id="coordonnes">
-    <li>{{ facture.contorder.billing.lastname }} {{ facture.contorder.billing.name }}</li>
-    <li>{{ facture.contorder.billing.address}}</li>
-    <li>{{ facture.contorder.billing.zipcode }} {{ facture.contorder.billing.city }} - {{ facture.contorder.billing.country }}</li>
+    <li>{{ invoice.contorder.billing.lastname }} {{ invoice.contorder.billing.name }}</li>
+    <li>{{ invoice.contorder.billing.address}}</li>
+    <li>{{ invoice.contorder.billing.zipcode }} {{ invoice.contorder.billing.city }} - {{ invoice.contorder.billing.country }}</li>
 </ul>
 <table id="entity">
     <tr>
@@ -37,7 +37,7 @@
         <td width="105">MONTANT HT</td>
         <td width="105">MONTANT TTC</td>
     </tr>
-    {% for produit in facture.contorder.product %}
+    {% for produit in invoice.contorder.product %}
         <tr>
             <td class="color">{{ produit.reference }}</td>
             <td class="color">{{ produit.quantite }}</td>
@@ -50,9 +50,9 @@
 <table id="total">
     <tr>
         <td width="110">TOTAL HT :</td>
-        <td width="100" class="color">{{ facture.contorder.prixHT }} €</td>
+        <td width="100" class="color">{{ invoice.contorder.prixHT }} €</td>
     </tr>
-    {% for key, tva in facture.contorder.tva %}
+    {% for key, tva in invoice.contorder.tva %}
         <tr>
             <td width="110">TVA <span class="color min">{{ key }}</span> :</td>
             <td width="100" class="color">{{ tva }} €</td>
@@ -60,7 +60,7 @@
     {% endfor %}
     <tr>
         <td width="110">TOTAL TTC :</td>
-        <td width="100" class="color">{{ facture.contorder.prixTTC }} €</td>
+        <td width="100" class="color">{{ invoice.contorder.prixTTC }} €</td>
     </tr>
 </table>
 <div id="footer">
