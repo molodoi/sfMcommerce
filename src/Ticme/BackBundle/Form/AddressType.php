@@ -4,7 +4,7 @@ namespace Ticme\BackBundle\Form;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
-use Symfony\Component\OptionsResolver\OptionsResolverInterface;
+use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\Form\FormEvent;
 use Symfony\Component\Form\FormEvents;
@@ -29,48 +29,64 @@ class AddressType extends AbstractType
             ->add('lastname')
             ->add('phone')
             ->add('address')
-            ->add('zipcode',null, array('attr' => array('class' => 'cp',
-                'maxlength' => 5)))
-            ->add('city','choice', array(
-                'choices' => array(
-                    'Bailleul' => 'Bailleul',
-                    'Saint-Jans Cappel' => 'Saint-Jans Cappel',
-                    'Meteren' => 'Meteren',
-                ),
-                'choices_as_values' => true,
-                'attr' => array('class' => 'ville')))
+            ->add('zipcode',null,
+                array(
+                    'attr' =>
+                        array(
+                            'class' => 'zipcode',
+                            'maxlength' => 5
+                        )
+                )
+            )
+            /*->add('city','choice',
+                array(
+                    'choices' =>
+                        array(
+                            'Bailleul' => 'Bailleul',
+                            'Saint-Jans Cappel' => 'Saint-Jans Cappel',
+                            'Meteren' => 'Meteren',
+                        ),
+                        'choices_as_values' => true,
+                        'attr' => array(
+                            'class' => 'city'
+                        )
+                )
+            )*/
+            ->add('city', 'choice', array('attr' => array( 'class' => 'city' ) ) )
             ->add('country')
             ->add('complement',null,array('required' => false))
             //->add('user')
         ;
 
-        /*
-        $city = function(FormInterface $form, $cp) {
-            $villeCodePostal = $this->em->getRepository('UtilisateursBundle:Villes')->findBy(array('villeCodePostal' => $cp));
 
-            if ($villeCodePostal) {
-                $villes = array();
-                foreach($villeCodePostal as $ville) {
-                    $villes[$ville->getVilleNom()] = $ville->getVilleNom();
+        $city = function(FormInterface $form, $zipcode) {
+            $cityZipcode = $this->em->getRepository('TicmeUserBundle:City')->findBy(
+                array('cityZipcode' => $zipcode)
+            );
+
+            if ($cityZipcode) {
+                $cities = array();
+                foreach($cityZipcode as $city) {
+                    $cities[$city->getVilleNom()] = $city->getVilleNom();
                 }
             } else {
-                $villes = null;
+                $cities = null;
             }
 
-            $form->add('city','choice', array('attr' => array('class'   => 'ville'),
-                'choices' => $villes));
+            $form->add('city','choice', array('attr' => array('class'   => 'city'),
+                'choices' => $cities));
         };
 
         $builder->get('zipcode')->addEventListener(FormEvents::POST_SUBMIT, function(FormEvent $event) use ($city) {
             $city($event->getForm()->getParent(),$event->getForm()->getData());
         });
-        */
+
     }
 
     /**
-     * @param OptionsResolverInterface $resolver
+     * @param OptionsResolver $resolver
      */
-    public function setDefaultOptions(OptionsResolverInterface $resolver)
+    public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
             'data_class' => 'Ticme\BackBundle\Entity\Address'

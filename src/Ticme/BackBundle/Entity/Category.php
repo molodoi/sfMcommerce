@@ -4,6 +4,7 @@ namespace Ticme\BackBundle\Entity;
 
 use Gedmo\Mapping\Annotation as Gedmo;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Category
@@ -26,6 +27,7 @@ class Category
      * @var string
      *
      * @ORM\Column(name="title", type="string", length=65)
+     * @Assert\NotBlank()
      */
     private $title;
 
@@ -34,6 +36,7 @@ class Category
      * @var string
      *
      * @ORM\Column(name="description", type="string", length=165)
+     * @Assert\NotBlank()
      */
     private $description;
 

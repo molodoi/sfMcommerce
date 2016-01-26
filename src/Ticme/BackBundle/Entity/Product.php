@@ -4,6 +4,7 @@ namespace Ticme\BackBundle\Entity;
 
 use Gedmo\Mapping\Annotation as Gedmo;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Product
@@ -27,6 +28,7 @@ class Product
      * @var string
      *
      * @ORM\Column(name="title", type="string", length=165)
+     * @Assert\NotBlank()
      */
     private $title;
 
@@ -40,16 +42,21 @@ class Product
     /**
      * @var float
      *
-     * @ORM\Column(name="priceHt", type="float", nullable=true)
+     * @ORM\Column(name="priceHt", type="float")
+     * @Assert\NotBlank()
+     * @Assert\Type(
+     *     type="float",
+     *     message="La valeur {{ value }} n\'est pas une valeur de type {{ type }}."
+     * )
      */
     private $priceHt;
 
     /**
      * @var boolean
      *
-     * @ORM\Column(name="available", type="boolean", nullable=true)
+     * @ORM\Column(name="available", type="boolean")
      */
-    private $available;
+    private $available = true;
 
     /**
      * @ORM\ManyToOne(targetEntity="Ticme\BackBundle\Entity\Tva", cascade={"persist"})

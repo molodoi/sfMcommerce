@@ -1,0 +1,208 @@
+<?php
+
+namespace Ticme\UserBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * City
+ *
+ * @ORM\Table(name="um_cities", uniqueConstraints={@ORM\UniqueConstraint(name="city_code_town_2", columns={"city_code_town"}), @ORM\UniqueConstraint(name="city_slug", columns={"city_slug"})}, indexes={@ORM\Index(name="city_departement", columns={"city_departement"}), @ORM\Index(name="city_name", columns={"city_name"}), @ORM\Index(name="city_name_real", columns={"city_name_real"}), @ORM\Index(name="city_code_town", columns={"city_code_town"}), @ORM\Index(name="city_zipcode", columns={"city_zipcode"}), @ORM\Index(name="city_longitude_latitude_deg", columns={"city_longitude_deg", "city_latitude_deg"}), @ORM\Index(name="city_name_soundex", columns={"city_name_soundex"}), @ORM\Index(name="city_name_metaphone", columns={"city_name_metaphone"}), @ORM\Index(name="city_population_2010", columns={"city_population_2010"}), @ORM\Index(name="city_name_simple", columns={"city_name_simple"})})
+ * @ORM\Entity
+ */
+class City
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="city_id", type="integer", nullable=false)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $cityId;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="city_departement", type="string", length=3, nullable=true)
+     */
+    private $cityDepartement;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="city_slug", type="string", length=255, nullable=true)
+     */
+    private $citySlug;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="city_name", type="string", length=45, nullable=true)
+     */
+    private $cityName;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="city_name_simple", type="string", length=45, nullable=true)
+     */
+    private $cityNameSimple;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="city_name_real", type="string", length=45, nullable=true)
+     */
+    private $cityNameReal;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="city_name_soundex", type="string", length=20, nullable=true)
+     */
+    private $cityNameSoundex;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="city_name_metaphone", type="string", length=22, nullable=true)
+     */
+    private $cityNameMetaphone;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="city_zipcode", type="string", length=255, nullable=true)
+     */
+    private $cityZipcode;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="city_town", type="string", length=3, nullable=true)
+     */
+    private $cityTown;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="city_code_town", type="string", length=5, nullable=false)
+     */
+    private $cityCodeTown;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="city_arrondissement", type="smallint", nullable=true)
+     */
+    private $cityArrondissement;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="city_canton", type="string", length=4, nullable=true)
+     */
+    private $cityCanton;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="city_amdi", type="smallint", nullable=true)
+     */
+    private $cityAmdi;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="city_population_2010", type="integer", nullable=true)
+     */
+    private $cityPopulation2010;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="city_population_1999", type="integer", nullable=true)
+     */
+    private $cityPopulation1999;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="city_population_2012", type="integer", nullable=true)
+     */
+    private $cityPopulation2012;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="city_densite_2010", type="integer", nullable=true)
+     */
+    private $cityDensite2010;
+
+    /**
+     * @var float
+     *
+     * @ORM\Column(name="city_surface", type="float", precision=10, scale=0, nullable=true)
+     */
+    private $citySurface;
+
+    /**
+     * @var float
+     *
+     * @ORM\Column(name="city_longitude_deg", type="float", precision=10, scale=0, nullable=true)
+     */
+    private $cityLongitudeDeg;
+
+    /**
+     * @var float
+     *
+     * @ORM\Column(name="city_latitude_deg", type="float", precision=10, scale=0, nullable=true)
+     */
+    private $cityLatitudeDeg;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="city_longitude_grd", type="string", length=9, nullable=true)
+     */
+    private $cityLongitudeGrd;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="city_latitude_grd", type="string", length=8, nullable=true)
+     */
+    private $cityLatitudeGrd;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="city_longitude_dms", type="string", length=9, nullable=true)
+     */
+    private $cityLongitudeDms;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="city_latitude_dms", type="string", length=8, nullable=true)
+     */
+    private $cityLatitudeDms;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="city_zmin", type="integer", nullable=true)
+     */
+    private $cityZmin;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="city_zmax", type="integer", nullable=true)
+     */
+    private $cityZmax;
+
+
+}
+

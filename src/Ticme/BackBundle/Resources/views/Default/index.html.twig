@@ -2,5 +2,9 @@
 
 
 {% block content %}
-    Hello Matt!
+    <div class="jumbotron">
+        <h2>Bienvenue dans l'interface d'administration du MCommerce!</h2>
+        <p>Vous trouverez dans la barre latérale de gauche toutes les fonctionnalités pour adminsitrer le contenu de votre Mini Ecommerce!</p>
+        <p><a class="btn btn-primary btn-lg" href="{{ path('ticme_back_product_create') }}" role="button">Créer tout de suite un produit</a></p>
+    </div>
 {% endblock %}

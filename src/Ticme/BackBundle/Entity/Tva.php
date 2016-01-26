@@ -3,6 +3,7 @@
 namespace Ticme\BackBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Tva
@@ -25,6 +26,7 @@ class Tva
      * @var string
      *
      * @ORM\Column(name="title", type="string", length=125)
+     * @Assert\NotBlank()
      */
     private $title;
 
@@ -32,6 +34,11 @@ class Tva
      * @var float
      *
      * @ORM\Column(name="multi", type="float")
+     * @Assert\NotBlank()
+     * @Assert\Type(
+     *     type="float",
+     *     message="La valeur {{ value }} n\'est pas une valeur de type {{ type }}."
+     * )
      */
     private $multi;
 
@@ -39,6 +46,11 @@ class Tva
      * @var float
      *
      * @ORM\Column(name="value", type="float")
+     * @Assert\NotBlank()
+     * @Assert\Type(
+     *     type="float",
+     *     message="La valeur {{ value }} n\'est pas une valeur de type {{ type }}."
+     * )
      */
     private $value;
 

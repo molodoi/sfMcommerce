@@ -3,6 +3,7 @@
 namespace Ticme\BackBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Ordering
@@ -25,6 +26,11 @@ class Ordering
      * @var boolean
      *
      * @ORM\Column(name="validated", type="boolean")
+     * @Assert\NotBlank()
+     * @Assert\Type(
+     *     type="boolean",
+     *     message="La valeur {{ value }} n\'est pas une valeur de type {{ type }}."
+     * )
      */
     private $validated;
 
@@ -32,6 +38,11 @@ class Ordering
      * @var integer
      *
      * @ORM\Column(name="reference", type="integer")
+     * @Assert\NotBlank()
+     * @Assert\Type(
+     *     type="integer",
+     *     message="La valeur {{ value }} n\'est pas une valeur de type {{ type }}."
+     * )
      */
     private $reference;
 

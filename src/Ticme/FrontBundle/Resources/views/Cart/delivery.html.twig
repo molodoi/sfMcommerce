@@ -77,13 +77,13 @@
                                 {{ form_label(form.zipcode, 'Code Postal') }}
                                 <div class="form-group {% if form_errors(form.zipcode) %} has-error {% endif %}">
                                     {{ form_errors(form.zipcode) }}
-                                    {{ form_widget(form.zipcode, { 'attr': {'class': 'form-control', 'placeholder': 'Code Postal'} }) }}
+                                    {{ form_widget(form.zipcode, { 'attr': {'class': 'form-control zipcode', 'placeholder': 'Code Postal'} }) }}
                                 </div>
 
                                 {{ form_label(form.city, 'Ville') }}
                                 <div class="form-group {% if form_errors(form.city) %} has-error {% endif %}">
                                     {{ form_errors(form.city) }}
-                                    {{ form_widget(form.city, { 'attr': {'class': 'form-control', 'placeholder': 'Ville'} }) }}
+                                    {{ form_widget(form.city, { 'attr': {'class': 'form-control city', 'placeholder': 'Ville'} }) }}
                                 </div>
 
 
@@ -110,4 +110,9 @@
             </div>
         </div>
     </div>
+{% endblock %}
+
+{% block javascripts %}
+        {{ parent() }}
+        <script src="{{ asset('/js/front/main.js') }}"></script>
 {% endblock %}

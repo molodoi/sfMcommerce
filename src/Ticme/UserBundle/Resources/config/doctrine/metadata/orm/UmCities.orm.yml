@@ -1,0 +1,226 @@
+UmCities:
+    type: entity
+    table: um_cities
+    indexes:
+        city_departement:
+            columns:
+                - city_departement
+        city_name:
+            columns:
+                - city_name
+        city_name_real:
+            columns:
+                - city_name_real
+        city_code_town:
+            columns:
+                - city_code_town
+        city_zipcode:
+            columns:
+                - city_zipcode
+        city_longitude_latitude_deg:
+            columns:
+                - city_longitude_deg
+                - city_latitude_deg
+        city_name_soundex:
+            columns:
+                - city_name_soundex
+        city_name_metaphone:
+            columns:
+                - city_name_metaphone
+        city_population_2010:
+            columns:
+                - city_population_2010
+        city_name_simple:
+            columns:
+                - city_name_simple
+    uniqueConstraints:
+        city_code_town_2:
+            columns:
+                - city_code_town
+        city_slug:
+            columns:
+                - city_slug
+    id:
+        cityId:
+            type: integer
+            nullable: false
+            options:
+                unsigned: true
+            id: true
+            column: city_id
+            generator:
+                strategy: IDENTITY
+    fields:
+        cityDepartement:
+            type: string
+            nullable: true
+            length: 3
+            options:
+                fixed: false
+            column: city_departement
+        citySlug:
+            type: string
+            nullable: true
+            length: 255
+            options:
+                fixed: false
+            column: city_slug
+        cityName:
+            type: string
+            nullable: true
+            length: 45
+            options:
+                fixed: false
+            column: city_name
+        cityNameSimple:
+            type: string
+            nullable: true
+            length: 45
+            options:
+                fixed: false
+            column: city_name_simple
+        cityNameReal:
+            type: string
+            nullable: true
+            length: 45
+            options:
+                fixed: false
+            column: city_name_real
+        cityNameSoundex:
+            type: string
+            nullable: true
+            length: 20
+            options:
+                fixed: false
+            column: city_name_soundex
+        cityNameMetaphone:
+            type: string
+            nullable: true
+            length: 22
+            options:
+                fixed: false
+            column: city_name_metaphone
+        cityZipcode:
+            type: string
+            nullable: true
+            length: 255
+            options:
+                fixed: false
+            column: city_zipcode
+        cityTown:
+            type: string
+            nullable: true
+            length: 3
+            options:
+                fixed: false
+            column: city_town
+        cityCodeTown:
+            type: string
+            nullable: false
+            length: 5
+            options:
+                fixed: false
+            column: city_code_town
+        cityArrondissement:
+            type: smallint
+            nullable: true
+            options:
+                unsigned: true
+            column: city_arrondissement
+        cityCanton:
+            type: string
+            nullable: true
+            length: 4
+            options:
+                fixed: false
+            column: city_canton
+        cityAmdi:
+            type: smallint
+            nullable: true
+            options:
+                unsigned: true
+            column: city_amdi
+        cityPopulation2010:
+            type: integer
+            nullable: true
+            options:
+                unsigned: true
+            column: city_population_2010
+        cityPopulation1999:
+            type: integer
+            nullable: true
+            options:
+                unsigned: true
+            column: city_population_1999
+        cityPopulation2012:
+            type: integer
+            nullable: true
+            options:
+                unsigned: true
+                comment: approximatif
+            column: city_population_2012
+        cityDensite2010:
+            type: integer
+            nullable: true
+            options:
+                unsigned: false
+            column: city_densite_2010
+        citySurface:
+            type: float
+            nullable: true
+            precision: 10
+            scale: 0
+            column: city_surface
+        cityLongitudeDeg:
+            type: float
+            nullable: true
+            precision: 10
+            scale: 0
+            column: city_longitude_deg
+        cityLatitudeDeg:
+            type: float
+            nullable: true
+            precision: 10
+            scale: 0
+            column: city_latitude_deg
+        cityLongitudeGrd:
+            type: string
+            nullable: true
+            length: 9
+            options:
+                fixed: false
+            column: city_longitude_grd
+        cityLatitudeGrd:
+            type: string
+            nullable: true
+            length: 8
+            options:
+                fixed: false
+            column: city_latitude_grd
+        cityLongitudeDms:
+            type: string
+            nullable: true
+            length: 9
+            options:
+                fixed: false
+            column: city_longitude_dms
+        cityLatitudeDms:
+            type: string
+            nullable: true
+            length: 8
+            options:
+                fixed: false
+            column: city_latitude_dms
+        cityZmin:
+            type: integer
+            nullable: true
+            options:
+                unsigned: false
+            column: city_zmin
+        cityZmax:
+            type: integer
+            nullable: true
+            options:
+                unsigned: false
+            column: city_zmax
+    lifecycleCallbacks: {  }

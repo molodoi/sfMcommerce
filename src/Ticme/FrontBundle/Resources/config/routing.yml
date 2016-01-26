@@ -1,3 +1,7 @@
+ticme_front_address:
+    resource: "@TicmeFrontBundle/Resources/config/routing/address.yml"
+    prefix:   /address
+
 ticme_front_categorie:
     resource: "@TicmeFrontBundle/Resources/config/routing/profile.yml"
     prefix:   /profile

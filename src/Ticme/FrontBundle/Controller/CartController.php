@@ -120,7 +120,7 @@ class CartController extends BaseController
     public function validationAction(Request $request)
     {
         if ($request->isMethod('POST')){
-            $this->setLivraisonOnSession($request);
+            $this->setDeliveryOnSession($request);
         }
 
         $em = $this->getDoctrine()->getManager();
@@ -132,7 +132,7 @@ class CartController extends BaseController
     }
 
 
-    public function setLivraisonOnSession(Request $request)
+    public function setDeliveryOnSession(Request $request)
     {
         $session = $request->getSession();
 

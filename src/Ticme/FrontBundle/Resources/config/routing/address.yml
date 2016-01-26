@@ -1,0 +1,5 @@
+ticme_front_address_city:
+    pattern:  /city/{zipcode}
+    defaults: { _controller: TicmeFrontBundle:Address:city }
+    options:
+      expose: true

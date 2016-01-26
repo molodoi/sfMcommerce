@@ -3,6 +3,7 @@
 namespace Ticme\BackBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Address
@@ -25,6 +26,7 @@ class Address
      * @var string
      *
      * @ORM\Column(name="name", type="string", length=125)
+     * @Assert\NotBlank()
      */
     private $name;
 
@@ -32,6 +34,7 @@ class Address
      * @var string
      *
      * @ORM\Column(name="lastname", type="string", length=125)
+     * @Assert\NotBlank()
      */
     private $lastname;
 
@@ -39,6 +42,7 @@ class Address
      * @var string
      *
      * @ORM\Column(name="phone", type="string", length=30)
+     * @Assert\NotBlank()
      */
     private $phone;
 
@@ -46,6 +50,7 @@ class Address
      * @var string
      *
      * @ORM\Column(name="address", type="string", length=255)
+     * @Assert\NotBlank()
      */
     private $address;
 
@@ -53,6 +58,7 @@ class Address
      * @var string
      *
      * @ORM\Column(name="zipcode", type="string", length=10)
+     * @Assert\NotBlank()
      */
     private $zipcode;
 
@@ -60,6 +66,7 @@ class Address
      * @var string
      *
      * @ORM\Column(name="city", type="string", length=125)
+     * @Assert\NotBlank()
      */
     private $city;
 
@@ -67,6 +74,7 @@ class Address
      * @var string
      *
      * @ORM\Column(name="country", type="string", length=125)
+     * @Assert\NotBlank()
      */
     private $country;
 

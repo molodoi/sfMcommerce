@@ -21,6 +21,7 @@ class AppKernel extends Kernel
             new FOS\UserBundle\FOSUserBundle(),
             new WhiteOctober\BreadcrumbsBundle\WhiteOctoberBreadcrumbsBundle(),
             new Liip\ImagineBundle\LiipImagineBundle(),
+            new FOS\JsRoutingBundle\FOSJsRoutingBundle(),
             new Ticme\BackBundle\TicmeBackBundle(),
             new Ticme\UserBundle\TicmeUserBundle(),
             new Ticme\FrontBundle\TicmeFrontBundle(),

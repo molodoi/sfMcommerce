@@ -26,3 +26,8 @@ body{
 .navbar {
     border-radius: 0px;
 }
+
+.jumbotron {
+    background-color: #000;
+    border-radius: 6px;
+}
