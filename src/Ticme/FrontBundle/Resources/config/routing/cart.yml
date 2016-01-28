@@ -18,6 +18,6 @@ ticme_front_cart_validation:
     pattern:  /validation
     defaults: { _controller: TicmeFrontBundle:Cart:validation }
 
-ticme_front_cart_livraisonAdresseSuppression:
-    pattern:  /livraison/adresse/suppression/{id}
-    defaults: { _controller: TicmeFrontBundle:Cart:adresseSuppression }
+ticme_front_cart_delete_deliry_address:
+    pattern:  /delivery/address/delete/{id}
+    defaults: { _controller: TicmeFrontBundle:Cart:deleteAddress }

@@ -159,5 +159,17 @@ class CartController extends BaseController
         return $this->redirect($this->generateUrl('ticme_front_cart_validation'));
     }
 
+    public function deleteAddressAction($id)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $entity = $em->getRepository('TicmeBackBundle:Address')->find($id);
 
+        if ($this->container->get('security.context')->getToken()->getUser() != $entity->getUser() || !$entity)
+            return $this->redirect ($this->generateUrl ('ticme_front_cart_delivery'));
+
+        $em->remove($entity);
+        $em->flush();
+
+        return $this->redirect ($this->generateUrl ('ticme_front_cart_delivery'));
+    }
 }

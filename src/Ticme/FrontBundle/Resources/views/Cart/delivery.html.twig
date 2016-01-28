@@ -19,8 +19,8 @@
                                 {% for adresse in user.address %}
                                     <label class="radio">
                                         <input type="radio" name="delivery" value="{{ adresse.id }}" {% if loop.index0 == 0 %}checked="checked"{% endif %}>
-                                        {{ adresse.address }}, {{ adresse.zipcode }} {{ adresse.city }} - {{ adresse.country }} <a href="{{ path('ticme_front_cart_livraisonAdresseSuppression', { 'id' : adresse.id }) }}"><i class="icon-trash"></i></a>
-                                        <br />{{ adresse.lastname }} {{ adresse.name }}
+                                        {{ adresse.address }}, {{ adresse.zipcode }} {{ adresse.city }} - {{ adresse.country }}
+                                        <br />{{ adresse.lastname }} {{ adresse.name }}  <a href="{{ path('ticme_front_cart_delete_deliry_address', { 'id' : adresse.id }) }}"><i class="fa fa-trash-o"></i></a>
                                     </label>
                                 {% endfor %}
 
@@ -30,8 +30,8 @@
                                 {% for adresse in user.address %}
                                     <label class="radio">
                                         <input type="radio" name="billing" value="{{ adresse.id }}" {% if loop.index0 == 0 %}checked="checked"{% endif %}>
-                                        {{ adresse.address }}, {{ adresse.zipcode }} {{ adresse.city }} - {{ adresse.country }} <a href="{{ path('ticme_front_cart_livraisonAdresseSuppression', { 'id' : adresse.id }) }}"><i class="icon-trash"></i></a>
-                                        <br />{{ adresse.lastname }} {{ adresse.name }}
+                                        {{ adresse.address }}, {{ adresse.zipcode }} {{ adresse.city }} - {{ adresse.country }}
+                                        <br />{{ adresse.lastname }} {{ adresse.name }} <a href="{{ path('ticme_front_cart_delete_deliry_address', { 'id' : adresse.id }) }}"><i class="fa fa-trash-o"></i></a>
                                     </label>
                                 {% endfor %}
 

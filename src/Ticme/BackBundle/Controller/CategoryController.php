@@ -6,6 +6,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Ticme\BackBundle\Entity\Category;
 use Ticme\BackBundle\Form\CategoryType;
+use Symfony\Component\HttpFoundation\JsonResponse;
 
 class CategoryController extends Controller
 {
@@ -143,6 +144,11 @@ class CategoryController extends Controller
         $title = $category->getTitle();
         $em->remove($category);
         $em->flush();
+
+        if($request->isXmlHttpRequest()){
+            return new JsonResponse(array('success' => true));
+        }
+
         $session = $request->getSession();
         $session->getFlashBag()->add('info', $title. ' supprimé');
 

@@ -5,6 +5,7 @@ namespace Ticme\BackBundle\Entity;
 use Gedmo\Mapping\Annotation as Gedmo;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
+use Ticme\BackBundle\Validator\Constraints as MyAssert;
 
 /**
  * Category
@@ -37,6 +38,7 @@ class Category
      *
      * @ORM\Column(name="description", type="string", length=165)
      * @Assert\NotBlank()
+     * @MyAssert\CheckUrl()
      */
     private $description;
 

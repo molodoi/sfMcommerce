@@ -5,6 +5,7 @@ namespace Ticme\BackBundle\Entity;
 use Gedmo\Mapping\Annotation as Gedmo;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
+use Ticme\BackBundle\Validator\Constraints as MyAssert;
 
 /**
  * Product
@@ -36,6 +37,7 @@ class Product
      * @var string
      *
      * @ORM\Column(name="description", type="text", nullable=true)
+     * @MyAssert\CheckUrl()
      */
     private $description;
 

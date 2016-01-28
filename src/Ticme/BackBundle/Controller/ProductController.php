@@ -6,6 +6,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Ticme\BackBundle\Entity\Product;
 use Ticme\BackBundle\Form\ProductType;
+use Symfony\Component\HttpFoundation\JsonResponse;
 
 class ProductController extends Controller
 {
@@ -140,6 +141,11 @@ class ProductController extends Controller
         $title = $product->getTitle();
         $em->remove($product);
         $em->flush();
+
+        if($request->isXmlHttpRequest()){
+            return new JsonResponse(array('success' => true));
+        }
+
         $session = $request->getSession();
         $session->getFlashBag()->add('info', $title. ' supprimé');
 

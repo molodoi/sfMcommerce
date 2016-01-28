@@ -67,7 +67,7 @@ class AddressType extends AbstractType
             if ($cityZipcode) {
                 $cities = array();
                 foreach($cityZipcode as $city) {
-                    $cities[$city->getVilleNom()] = $city->getVilleNom();
+                    $cities[$city->getCityName()] = $city->getCityName();
                 }
             } else {
                 $cities = null;
@@ -77,6 +77,10 @@ class AddressType extends AbstractType
                 'choices' => $cities));
         };
 
+        /*
+         * How to Dynamically Modify Forms Using Form Events
+         * http://symfony.com/doc/current/cookbook/form/dynamic_form_modification.html
+        */
         $builder->get('zipcode')->addEventListener(FormEvents::POST_SUBMIT, function(FormEvent $event) use ($city) {
             $city($event->getForm()->getParent(),$event->getForm()->getData());
         });
